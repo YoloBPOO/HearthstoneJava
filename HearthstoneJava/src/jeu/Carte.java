@@ -7,21 +7,23 @@ public class Carte implements ICarte {
 	
 	// Constructeur
 	
-	public Carte(String n, int c, Joueur p) {
+	public Carte(String n, int c, IJoueur p) {
 		setNom(n);
 		setCout(c);
-		setPropietaire(p);
+		setProprietaire(p);
 	}
 
 	// Setters
 	
 	public void setNom(String n) {
-		this.nom=nom;
+		this.nom=n;
 	}
+	
 	public void setCout(int c) {
 		this.cout=c;
 	}
-	public void setProprietaire(p) {
+	
+	public void setProprietaire(IJoueur p) {
 		this.proprietaire=p;
 	}
 	

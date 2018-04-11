@@ -14,9 +14,19 @@ public class Capacite implements ICapacite {
 		setDescription(d);
 	}
 	
+	// Setters
 	
+	public void setNom(String n) {
+		this.nom=n;
+	}
+
+
+	public void setDescription(String d) {
+		this.description=d;
+	}
+
 	// Getters
-	
+
 	public String getNom() {
 		return nom;
 	}

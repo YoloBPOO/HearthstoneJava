@@ -21,9 +21,11 @@ public class Heros {
 	public void setNom(String n) {
 		this.nom=n;
 	}
+	
 	public void setPdv(int pdv) {
 		this.pdv=pdv;
 	}
+	
 	public void setPouvoir(Capacite p) {
 		this.pouvoir=p;
 	}
@@ -33,9 +35,11 @@ public class Heros {
 	public String getNom() {
 		return nom;
 	}
+	
 	public int getPdv() {
 		return pdv;
 	}
+	
 	public Capacite getCapacite() {
 		return pouvoir;
 	}

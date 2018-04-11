@@ -16,6 +16,24 @@ public class Joueur implements IJoueur {
 		setMana(m);
 		setMs(ms);
 	}
+	
+	// Setters
+
+	public void setMs(int ms) {
+		this.stockMana=ms;		
+	}
+
+	public void setMana(int m) {
+		this.mana=m;
+	}
+
+	public void setPseudo(String p) {
+		this.pseudo=p;
+	}
+
+	public void setHeros(Heros h) {
+		this.hero=h;
+	}
 
 	
 	// Getters
@@ -36,6 +54,8 @@ public class Joueur implements IJoueur {
 	public int getStockMana() {
 		return stockMana;
 	}
+	
+	// Méthodes
 
 	@Override
 	public ArrayList<ICarte> getMain() {
