@@ -1,24 +1,45 @@
 package jeu;
 
 public class Carte implements ICarte {
+	private String nom;
+	private int cout;
+	private IJoueur proprietaire;
+	
+	// Constructeur
+	
+	public Carte(String n, int c, Joueur p) {
+		setNom(n);
+		setCout(c);
+		setPropietaire(p);
+	}
 
-	@Override
+	// Setters
+	
+	public void setNom(String n) {
+		this.nom=nom;
+	}
+	public void setCout(int c) {
+		this.cout=c;
+	}
+	public void setProprietaire(p) {
+		this.proprietaire=p;
+	}
+	
+	// Getters
+
 	public String getNom() {
-		// TODO Auto-generated method stub
-		return null;
+		return nom;
 	}
 
-	@Override
 	public int getCout() {
-		// TODO Auto-generated method stub
-		return 0;
+		return cout;
 	}
 
-	@Override
 	public IJoueur getProprietaire() {
-		// TODO Auto-generated method stub
-		return null;
+		return proprietaire;
 	}
+	
+	// Méthodes
 
 	@Override
 	public void executerEffetDebutTour(Object cible) throws HearthstoneException {

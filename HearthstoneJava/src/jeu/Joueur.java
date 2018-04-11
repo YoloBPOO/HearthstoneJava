@@ -3,29 +3,38 @@ package jeu;
 import java.util.ArrayList;
 
 public class Joueur implements IJoueur {
+	private Heros hero;
+	private String pseudo;
+	private int mana;
+	private int stockMana;
+	
+	// Constructeur
+	
+	public Joueur(Heros h, String p, int m, int ms) {
+		setHeros(h);
+		setPseudo(p);
+		setMana(m);
+		setMs(ms);
+	}
 
-	@Override
+	
+	// Getters
+	
+	
 	public Heros getHeros() {
-		// TODO Auto-generated method stub
-		return null;
+		return hero;
 	}
 
-	@Override
 	public String getPseudo() {
-		// TODO Auto-generated method stub
-		return null;
+		return pseudo;
 	}
 
-	@Override
 	public int getMana() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mana;
 	}
 
-	@Override
 	public int getStockMana() {
-		// TODO Auto-generated method stub
-		return 0;
+		return stockMana;
 	}
 
 	@Override
