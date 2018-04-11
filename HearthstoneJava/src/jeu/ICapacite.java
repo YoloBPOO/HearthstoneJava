@@ -45,3 +45,4 @@ public interface ICapacite {
          * @throws HearthstoneException En cas de problème...
          */
         void executerEffetDisparition(Object cible) throws HearthstoneException;
+}
