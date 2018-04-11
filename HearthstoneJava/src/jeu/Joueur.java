@@ -3,13 +3,16 @@ package jeu;
 import java.util.ArrayList;
 
 public class Joueur implements IJoueur {
+	
+	// Attributs
+	
 	private Heros hero;
 	private String pseudo;
 	private int mana;
 	private int stockMana;
 	
 	// Constructeur
-	
+
 	public Joueur(Heros h, String p, int m, int ms) {
 		setHeros(h);
 		setPseudo(p);
