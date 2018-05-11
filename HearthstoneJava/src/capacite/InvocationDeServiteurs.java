@@ -1,6 +1,8 @@
 package capacite;
 
 import jeu.HearthstoneException;
+import carte.*;
+import jeu.*;
 
 public class InvocationDeServiteurs extends Capacite {
 	
@@ -8,6 +10,22 @@ public class InvocationDeServiteurs extends Capacite {
 
 	public InvocationDeServiteurs() {
 		super("Invocation de serviteurs", "Crée automatiquement, au moment de sa mise en jeu, un nouveau serviteur.");
+	}
+	
+	public void setPdv(int p) {
+		this.pdv=p;
+	}
+	
+	public void setAtt(int a) {
+		this.att=a;
+	}
+	
+	public int getPdv() {
+		return this.pdv;
+	}
+	
+	public int getAtt() {
+		return this.att;
 	}
 	
 	@Override
@@ -20,7 +38,9 @@ public class InvocationDeServiteurs extends Capacite {
 	public void executerAction(Object cible) throws HearthstoneException {}
 
 	@Override
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+		Serviteur s = new Serviteur("Invocation",0,((Joueur)cible),this.getPdv(),this.getAtt(),null);
+	}
 
 	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
