@@ -2,6 +2,8 @@ package jeu;
 
 import java.util.ArrayList;
 
+import carte.ICarte;
+
 public class Joueur implements IJoueur {
 	
 	// Attributs

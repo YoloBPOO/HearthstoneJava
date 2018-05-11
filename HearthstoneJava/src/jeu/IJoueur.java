@@ -2,6 +2,8 @@ package jeu;
 
 import java.util.ArrayList;
 
+import carte.ICarte;
+
 /**
  * Cette interface définit le comportement (normalement) minimal d'un joueur
  *

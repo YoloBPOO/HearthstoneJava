@@ -1,4 +1,7 @@
-package jeu;
+package carte;
+
+import jeu.HearthstoneException;
+import jeu.IJoueur;
 
 public class Carte implements ICarte {
 	private String nom;

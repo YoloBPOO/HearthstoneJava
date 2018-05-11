@@ -1,4 +1,6 @@
-package jeu;
+package capacite;
+
+import jeu.HearthstoneException;
 
 /**
  * Une capacité, c'est l'abstraction générique pour décrire, le pouvoir du héros, le sort d'une carte Sort, la capacité d'un serviteur, etc.

@@ -1,5 +1,7 @@
 package jeu;
 
+import capacite.Capacite;
+
 public class Heros {
 	
 	// Attributs

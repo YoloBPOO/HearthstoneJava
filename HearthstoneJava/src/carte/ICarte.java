@@ -1,4 +1,7 @@
-package jeu;
+package carte;
+
+import jeu.HearthstoneException;
+import jeu.IJoueur;
 
 /**
  * Une carte, ben c'est une carte du jeu quoi ! Une carte peut être

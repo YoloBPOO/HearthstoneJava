@@ -1,4 +1,6 @@
-package jeu;
+package capacite;
+
+import jeu.HearthstoneException;
 
 public class Capacite implements ICapacite {
 	
