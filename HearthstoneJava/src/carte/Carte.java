@@ -45,6 +45,10 @@ public class Carte implements ICarte {
 	}
 	
 	// Méthodes
+	
+	public String toString() {
+		return "Nom : " + this.getNom() + " - Cout : " + this.getCout();
+	}
 
 	@Override
 	public void executerEffetDebutTour(Object cible) throws HearthstoneException {

@@ -8,8 +8,11 @@ public class InvocationDeServiteurs extends Capacite {
 	
 	private int att, pdv;
 
-	public InvocationDeServiteurs() {
+	public InvocationDeServiteurs(int att,int pdv) {
 		super("Invocation de serviteurs", "Crée automatiquement, au moment de sa mise en jeu, un nouveau serviteur.");
+		this.setAtt(att);
+		this.setPdv(pdv);
+		
 	}
 	
 	public void setPdv(int p) {
