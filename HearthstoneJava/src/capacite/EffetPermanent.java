@@ -7,8 +7,10 @@ public class EffetPermanent extends Capacite {
 
 	private int boostPdv, boostAtt;
 	
-	public EffetPermanent() {
+	public EffetPermanent(int bp, int ba) {
 		super("Effet permanent", "Permet de modifier les caractéristiques des serviteurs en jeu, en leur ajoutant des points d'attaque et/ou de vie en bonus. L'effet disparaît lorsque la carte qui possède cette capacité n'est plus en jeu.");
+		this.setBoostPdv(bp);
+		this.setBoostAtt(ba);
 	}
 	
 	public void setBoostPdv(int p) {
