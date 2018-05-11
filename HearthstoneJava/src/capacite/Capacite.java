@@ -39,6 +39,10 @@ public class Capacite implements ICapacite {
 
 	// Méthodes
 	
+	public String toString() {
+		return "Nom : " + this.getNom() + " - Description : " + this.getDescription();
+	}
+	
 	@Override
 	public void executerEffetDebutTour() throws HearthstoneException {
 		// TODO Auto-generated method stub
