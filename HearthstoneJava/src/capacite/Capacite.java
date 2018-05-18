@@ -12,8 +12,8 @@ public class Capacite implements ICapacite {
 	// Constructeur
 	
 	public Capacite(String n, String d) {
-		setNom(n);
-		setDescription(d);
+		this.setNom(n);
+		this.setDescription(d);
 	}
 	
 	// Setters
@@ -40,7 +40,7 @@ public class Capacite implements ICapacite {
 	// Méthodes
 	
 	public String toString() {
-		return "Nom : " + this.getNom() + " - Description : " + this.getDescription();
+		return " - Capacité [ Nom : " + this.getNom() + " - Description : " + this.getDescription() + " ]";
 	}
 	
 	@Override

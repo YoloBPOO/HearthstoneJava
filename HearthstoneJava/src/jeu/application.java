@@ -18,6 +18,20 @@ public class application {
 		EffetPermanent epe = new EffetPermanent(0,1);
 		Serviteur cdr = new Serviteur("Chef de raid", 3, null, 2, 2, epe);
 		System.out.println(cdr.toString());
+		
+		Provocation p = new Provocation();
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, null, 4, 5, p);
+		System.out.println(gbb.toString());
+		
+		Charge c = new Charge();
+		Serviteur lmt = new Serviteur("La missilière téméraire", 6, null, 2, 5, c);
+		System.out.println(lmt.toString());
+		
+		Serviteur om = new Serviteur("L'ogre-magi", 4, null, 4, 4, p);
+		System.out.println(om.toString());
+		
+		Serviteur am = new Serviteur("Archimage", 6, null, 7, 4, p);
+		System.out.println(am.toString());
 	}
 	
 	
