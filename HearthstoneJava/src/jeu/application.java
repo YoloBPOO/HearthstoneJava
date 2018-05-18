@@ -24,7 +24,7 @@ public class application {
 		System.out.println(gbb.toString());
 		
 		Charge c = new Charge();
-		Serviteur lmt = new Serviteur("La missilière téméraire", 6, null, 2, 5, c);
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, null, 2, 5, c);
 		System.out.println(lmt.toString());
 		
 		Serviteur om = new Serviteur("L'ogre-magi", 4, null, 4, 4, p);
@@ -33,18 +33,18 @@ public class application {
 		Serviteur am = new Serviteur("Archimage", 6, null, 7, 4, p);
 		System.out.println(am.toString());
 		
-		Serviteur gl = new Serviteur("Gnôme lépreux", 1, null, 1, 1, null);
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, null, 1, 1, p);
 		System.out.println(gl.toString());
 		
-		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, null);
+		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, p);
 		System.out.println(gm.toString());
 		
 		Pioche pio = new Pioche();
-		Serviteur ba = new Serviteur("Busard affamé", 5, null, 2, 3, p);
-		System.out.println(pio.toString());
+		Serviteur ba = new Serviteur("Busard affame", 5, null, 2, 3, pio);
+		System.out.println(ba.toString());
 		
-		Sort c = new Sort("Charge", 1, null);
-		System.out.println(c.toString());
+		Sort ch = new Sort("Charge", 1, null);
+		System.out.println(ch.toString());
 		
 		Sort attm = new Sort("Attaque mentale", 2, null);
 		System.out.println(attm.toString());
@@ -61,8 +61,8 @@ public class application {
 		Sort im = new Sort("Image mirroir", 1, null);
 		System.out.println(im.toString());
 		
-		Sort ep = new Sort("Explosion pyrotechnique", 10, null);
-		System.out.println(ep.toString());
+		Sort epy = new Sort("Explosion pyrotechnique", 10, null);
+		System.out.println(epy.toString());
 		
 		Sort mdc = new Sort("Marque du chasseur", 1, null);
 		System.out.println(mdc.toString());
