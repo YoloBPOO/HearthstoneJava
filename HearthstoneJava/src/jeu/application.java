@@ -8,7 +8,7 @@ public class application {
 	
 	public static void main(String[] args) {
 		InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
-		Serviteur cmm = new Serviteur("Chasse-marÈe murloc", 2, null, 1, 2, ids);
+		Serviteur cmm = new Serviteur("Chasse-mar√©e murloc", 2, null, 1, 2, ids);
 		System.out.println(cmm.toString());
 		
 		EffetPermanent ep = new EffetPermanent(1,1);
@@ -24,7 +24,7 @@ public class application {
 		System.out.println(gbb.toString());
 		
 		Charge c = new Charge();
-		Serviteur lmt = new Serviteur("La missiliËre tÈmÈraire", 6, null, 2, 5, c);
+		Serviteur lmt = new Serviteur("La missili√®re t√©m√©raire", 6, null, 2, 5, c);
 		System.out.println(lmt.toString());
 		
 		Serviteur om = new Serviteur("L'ogre-magi", 4, null, 4, 4, p);
@@ -32,6 +32,50 @@ public class application {
 		
 		Serviteur am = new Serviteur("Archimage", 6, null, 7, 4, p);
 		System.out.println(am.toString());
+		
+		Serviteur gl = new Serviteur("Gn√¥me l√©preux", 1, null, 1, 1, null);
+		System.out.println(gl.toString());
+		
+		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, null);
+		System.out.println(gm.toString());
+		
+		Pioche pio = new Pioche();
+		Serviteur ba = new Serviteur("Busard affam√©", 5, null, 2, 3, p);
+		System.out.println(pio.toString());
+		
+		Sort c = new Sort("Charge", 1, null);
+		System.out.println(c.toString());
+		
+		Sort attm = new Sort("Attaque mentale", 2, null);
+		System.out.println(attm.toString());
+		
+		Sort cdf = new Sort("Chox de flamme", 7, null);
+		System.out.println(cdf.toString());
+		
+		Sort edg = new Sort("Eclair de givre", 2, null);
+		System.out.println(edg.toString());
+		
+		Sort ida = new Sort("Intelligence des arcanes", 2, null);
+		System.out.println(ida.toString());
+		
+		Sort im = new Sort("Image mirroir", 1, null);
+		System.out.println(im.toString());
+		
+		Sort ep = new Sort("Explosion pyrotechnique", 10, null);
+		System.out.println(ep.toString());
+		
+		Sort mdc = new Sort("Marque du chasseur", 1, null);
+		System.out.println(mdc.toString());
+		
+		Sort tda = new Sort("Tir des arcanes", 1, null);
+		System.out.println(tda.toString());
+		
+		Sort llc = new Sort("Lacher les chiens", 3, null);
+		System.out.println(llc.toString());
+		
+		Sort odt = new Sort("Ordre de tuer", 3, null);
+		System.out.println(odt.toString());
+		
 	}
 	
 	
@@ -51,7 +95,7 @@ public class application {
 	System.out.println("Entrez un pseudo : ");
 	p=sc.nextLine();
 	
-	System.out.println("Choisisez un hÈros : Jaina (J) ou Rexxar (R)");
+	System.out.println("Choisisez un h√©ros : Jaina (J) ou Rexxar (R)");
 	choix=sc.nextLine();
 	
 	if (choix=="J") {
