@@ -95,7 +95,7 @@ public class application {
 		joueur1.creationDeck();
 		deck = joueur1.getDeck();
 		System.out.println(joueur1.deck.size());
-
+		System.out.println(joueur1.deck.size());
 		for (ICarte carte : deck) {
 			System.out.println(carte.toString());
 			System.out.println(joueur1.deck.size());
