@@ -1,13 +1,17 @@
 package jeu;
 
 import carte.*;
+import java.util.ArrayList;
 import capacite.*;
 
 
 public class application {
 	
 	public static void main(String[] args) {
-		InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
+		ArrayList<ICarte> deck = new ArrayList<ICarte>();
+		int i;
+		
+		/*InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
 		Serviteur cmm = new Serviteur("Chasse-marée murloc", 2, null, 1, 2, ids);
 		System.out.println(cmm.toString());
 		
@@ -77,10 +81,28 @@ public class application {
 		System.out.println(llc.toString());
 		
 		Sort odt = new Sort("Ordre de tuer", 3, null, ac);
-		System.out.println(odt.toString());
+		System.out.println(odt.toString());	*/
+
+		BouleDeFeu bdf = new BouleDeFeu();
+		Heros jaina = new Heros("Jaina", 15, bdf);
+		System.out.println(jaina.toString());
+		
+		FlecheDuChasseur fdc = new FlecheDuChasseur();
+		Heros rexxar = new Heros("Rexxar", 15, fdc);
+		System.out.println(rexxar.toString());
+		
+		Joueur joueur1 = new Joueur(rexxar, "Drakox", 0 , 0);
+		joueur1.creationDeck();
+		deck = joueur1.getDeck();
+		System.out.println(joueur1.deck.size());
+
+		for (ICarte carte : deck) {
+			System.out.println(carte.toString());
+		}
 		
 	}
 	
+
 	
 	
 	

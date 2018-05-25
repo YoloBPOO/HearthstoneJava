@@ -23,7 +23,7 @@ public class Sort extends Carte {
 	}
 	
 	public String toString() {
-		return super.toString() + (this.getCapacite()).toString();
+		return "Sort [" + super.toString() + (this.getCapacite()).toString() + "]";
 	}
 
 }

@@ -2,7 +2,19 @@ package jeu;
 
 import java.util.ArrayList;
 
+import capacite.AttaqueCiblee;
+import capacite.AttaqueTotale;
+import capacite.BouleDeFeu;
+import capacite.Charge;
+import capacite.EffetPermanent;
+import capacite.FlecheDuChasseur;
+import capacite.InvocationDeServiteurs;
+import capacite.Pioche;
+import capacite.Provocation;
+import carte.Carte;
 import carte.ICarte;
+import carte.Serviteur;
+import carte.Sort;
 
 public class Joueur implements IJoueur {
 	
@@ -12,6 +24,9 @@ public class Joueur implements IJoueur {
 	private String pseudo;
 	private int mana;
 	private int stockMana;
+	ArrayList<ICarte> deck = new ArrayList<ICarte>();
+	ArrayList<ICarte> main = new ArrayList<ICarte>();
+	ArrayList<ICarte> jeu = new ArrayList<ICarte>();
 	
 	// Constructeur
 
@@ -61,28 +76,114 @@ public class Joueur implements IJoueur {
 	}
 	
 	// MÈthodes
+	
+	public void creationDeck() {
+		InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
+		Serviteur cmm = new Serviteur("Chasse-mar√©e murloc", 2, null, 1, 2, ids);
+		deck.add(cmm);
+		
+		EffetPermanent ep = new EffetPermanent(1,1);
+		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, null, 6, 6, ep);
+		deck.add(cdh);
 
-	@Override
+		EffetPermanent epe = new EffetPermanent(0,1);
+		Serviteur cdr = new Serviteur("Chef de raid", 3, null, 2, 2, epe);
+		deck.add(cdr);
+		
+		Provocation p = new Provocation();
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, null, 4, 5, p);
+		deck.add(gbb);
+		
+		Charge c = new Charge();
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, null, 2, 5, c);
+		deck.add(lmt);
+		
+		Serviteur om = new Serviteur("L'ogre-magi", 4, null, 4, 4, p);
+		deck.add(om);
+		
+		Serviteur am = new Serviteur("Archimage", 6, null, 7, 4, p);
+		deck.add(am);
+		
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, null, 1, 1, p);
+		deck.add(gl);
+		
+		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, p);
+		deck.add(gm);
+		
+		Pioche pio1 = new Pioche(1);
+		Serviteur ba = new Serviteur("Busard affame", 5, null, 2, 3, pio1);
+		deck.add(ba);
+		
+		Sort ch = new Sort("Charge", 1, null, c);
+		deck.add(ch);
+		
+		AttaqueCiblee ac = new AttaqueCiblee();
+		Sort attm = new Sort("Attaque mentale", 2, null, ac);
+		deck.add(attm);
+		
+		AttaqueTotale at = new AttaqueTotale();
+		Sort cdf = new Sort("Choc de flamme", 7, null, at);
+		deck.add(cdf);
+		
+		Sort edg = new Sort("Eclair de givre", 2, null, ac);
+		deck.add(edg);
+		
+		Pioche pio2 = new Pioche(2);
+		Sort ida = new Sort("Intelligence des arcanes", 2, null, pio2);
+		deck.add(ida);
+		
+		Sort im = new Sort("Image mirroir", 1, null, pio1); // invocation de monstre A FAIRE !!!!!!!!!!!!
+		deck.add(im);
+		
+		Sort epy = new Sort("Explosion pyrotechnique", 10, null, ac);
+		deck.add(epy);
+		
+		Sort mdc = new Sort("Marque du chasseur", 1, null, ac );  // abaisse les pdv a 1  A FAIRE !!!!!!!!!!!
+		deck.add(mdc);
+		
+		Sort tda = new Sort("Tir des arcanes", 1, null, ac);
+		deck.add(tda);
+		
+		Sort llc = new Sort("Lacher les chiens", 3, null, p); // invocation de monstre A FAIRE !!!!!!!!!!!!
+		deck.add(llc);
+		
+		Sort odt = new Sort("Ordre de tuer", 3, null, ac);
+		deck.add(odt);
+	}
+		
+	
 	public ArrayList<ICarte> getMain() {
-		// TODO Auto-generated method stub
-		return null;
+		return main;
+	}
+	public int size() {
+		return main.size();
 	}
 
-	@Override
 	public ArrayList<ICarte> getJeu() {
-		// TODO Auto-generated method stub
-		return null;
+		return jeu;
+	}
+	
+	public ArrayList<ICarte> getDeck() {
+		return deck;
 	}
 
 	@Override
-	public ICarte getCarteEnJeu(String nomCarte) {
-		// TODO Auto-generated method stub
+	public ICarte getCarteEnJeu(String nomCarte){
+		for (ICarte carte : jeu) {
+			if(jeu.contains(nomCarte)){
+			    return carte;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public ICarte getCarteEnMain(String nomCarteMain) {
-		// TODO Auto-generated method stub
+		for (ICarte carte : main) {
+			if(main.contains(nomCarteMain)){
+			    return carte;
+			}
+		}
 		return null;
 	}
 

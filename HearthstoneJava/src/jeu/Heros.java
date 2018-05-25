@@ -45,4 +45,8 @@ public class Heros {
 	public Capacite getCapacite() {
 		return pouvoir;
 	}
+	
+	public String toString() {
+		return "Heros [Nom : " + this.getNom() + " - PDV : " + this.getPdv() + " - Pouvoir Heroique : " + getCapacite() +".]";
+	}
 }
