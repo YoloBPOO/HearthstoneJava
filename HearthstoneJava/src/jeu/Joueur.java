@@ -1,6 +1,7 @@
 package jeu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import capacite.AttaqueCiblee;
 import capacite.AttaqueTotale;
@@ -167,7 +168,6 @@ public class Joueur implements IJoueur {
 		return deck;
 	}
 
-	@Override
 	public ICarte getCarteEnJeu(String nomCarte){
 		for (ICarte carte : jeu) {
 			if(jeu.contains(nomCarte)){
@@ -177,7 +177,6 @@ public class Joueur implements IJoueur {
 		return null;
 	}
 
-	@Override
 	public ICarte getCarteEnMain(String nomCarteMain) {
 		for (ICarte carte : main) {
 			if(main.contains(nomCarteMain)){
@@ -187,28 +186,29 @@ public class Joueur implements IJoueur {
 		return null;
 	}
 
-	@Override
 	public void prendreTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		this.stockMana += 1; 
+		this.mana = this.stockMana;
 	}
 
 	@Override
 	public void finirTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		
 	}
 
+	public void melanger() {
+		Collections.shuffle(deck);
+	}
+	
 	@Override
 	public void piocher() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		main.add(deck.get(0));
+		deck.remove(0);
 	}
 
 	@Override
 	public void jouerCarte(ICarte carte) throws HearthstoneException {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

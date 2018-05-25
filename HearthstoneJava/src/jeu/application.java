@@ -2,6 +2,8 @@ package jeu;
 
 import carte.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import capacite.*;
 
 
@@ -10,6 +12,10 @@ public class application {
 	public static void main(String[] args) {
 		ArrayList<ICarte> deck = new ArrayList<ICarte>();
 		int i;
+		String pseudoJ1, pseudoJ2, choix;
+		char carac;
+		Scanner sc = new Scanner(System.in);
+		Joueur joueur1, joueur2;
 		
 		/*InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
 		Serviteur cmm = new Serviteur("Chasse-marée murloc", 2, null, 1, 2, ids);
@@ -85,20 +91,60 @@ public class application {
 
 		BouleDeFeu bdf = new BouleDeFeu();
 		Heros jaina = new Heros("Jaina", 15, bdf);
-		System.out.println(jaina.toString());
 		
 		FlecheDuChasseur fdc = new FlecheDuChasseur();
 		Heros rexxar = new Heros("Rexxar", 15, fdc);
-		System.out.println(rexxar.toString());
-		
-		Joueur joueur1 = new Joueur(rexxar, "Drakox", 0 , 0);
-		joueur1.creationDeck();
-		deck = joueur1.getDeck();
-		System.out.println(joueur1.deck.size());
 
-		for (ICarte carte : deck) {
-			System.out.println(carte.toString());
-		}
+
+		
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+		
+	//	for (ICarte carte : joueur1.getDeck()) {
+			//System.out.println(carte.toString());
+	//	}
+			
+			
+			System.out.println("Entrez le pseudo du joueur 1 : ");
+			pseudoJ1 = sc.nextLine();
+			System.out.println("Quel Heros voulez-vous jouer (J/R) : ");
+			do{
+				choix = sc.nextLine();
+				carac = choix.charAt(0);
+			}while (carac != 'J' && carac != 'R' && carac != 'j' && carac != 'r');
+			
+			
+			if (carac == 'J' || carac == 'j') {
+				joueur1 = new Joueur(jaina,pseudoJ1,0,0);
+			}
+			else {
+				joueur1 = new Joueur(rexxar,pseudoJ1,0,0);
+			}
+			
+			joueur1.creationDeck();
+			joueur1.melanger();
+			
+			
+			System.out.println("Entrez le pseudo du joueur 2 : ");
+			pseudoJ2 = sc.nextLine();
+			System.out.println("Quel Heros voulez-vous jouer (J/R) : ");
+			do{
+				choix = sc.nextLine();
+				carac = choix.charAt(0);
+			}while (carac != 'J' && carac != 'R' && carac != 'j' && carac != 'r');
+			
+			if (carac == 'J' || carac == 'j') {
+				joueur2 = new Joueur(jaina,pseudoJ2,0,0);
+			}
+			else {
+				joueur2 = new Joueur(rexxar,pseudoJ2,0,0);
+			}
+			
+			joueur1.creationDeck();
+			joueur1.melanger();
+			
+			System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros());
+			
+			
 		
 	}
 	
