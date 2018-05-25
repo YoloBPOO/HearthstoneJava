@@ -211,6 +211,7 @@ public class Joueur implements IJoueur {
 		// TODO Auto-generated method stub
 	}
 
+	
 	@Override
 	public void jouerCarte(ICarte carte, Object cible) throws HearthstoneException {
 		// TODO Auto-generated method stub

@@ -139,7 +139,7 @@ public class application {
 			
 			System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros());
 			
-			for(i=0 ; i<3 ; i++)
+			for(i=0 ; i<2 ; i++)
 			{
 				joueur1.piocher();
 				joueur2.piocher();
