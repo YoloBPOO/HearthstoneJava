@@ -9,7 +9,7 @@ import capacite.*;
 
 public class application {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws HearthstoneException {
 		ArrayList<ICarte> deck = new ArrayList<ICarte>();
 		int i;
 		String pseudoJ1, pseudoJ2, choix;
@@ -94,15 +94,10 @@ public class application {
 		
 		FlecheDuChasseur fdc = new FlecheDuChasseur();
 		Heros rexxar = new Heros("Rexxar", 15, fdc);
-
-
-		
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
 		
 	//	for (ICarte carte : joueur1.getDeck()) {
 			//System.out.println(carte.toString());
-	//	}
-			
+	//	}		
 			
 			System.out.println("Entrez le pseudo du joueur 1 : ");
 			pseudoJ1 = sc.nextLine();
@@ -139,13 +134,31 @@ public class application {
 				joueur2 = new Joueur(rexxar,pseudoJ2,0,0);
 			}
 			
-			joueur1.creationDeck();
-			joueur1.melanger();
+			joueur2.creationDeck();
+			joueur2.melanger();
 			
 			System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros());
 			
+			for(i=0 ; i<3 ; i++)
+			{
+				joueur1.piocher();
+				joueur2.piocher();
+			}
+					
+			System.out.println("Joueur 1 carte en main :");		
+			for(i=0 ; i < joueur1.main.size() ; i++)
+			{
+				System.out.println(joueur1.main.get(i));
+			}
 			
-		
+			System.out.println("Joueur 2 carte en main : ");
+			for(i=0 ; i < joueur2.main.size() ; i++)
+			{
+				System.out.println(joueur2.main.get(i));
+			}
+
+			
+			
 	}
 	
 

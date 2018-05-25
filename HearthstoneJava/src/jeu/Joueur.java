@@ -202,8 +202,8 @@ public class Joueur implements IJoueur {
 	
 	@Override
 	public void piocher() throws HearthstoneException {
-		main.add(deck.get(0));
-		deck.remove(0);
+		this.main.add(this.deck.get(0));
+		this.deck.remove(0);
 	}
 
 	@Override
