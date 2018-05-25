@@ -39,41 +39,44 @@ public class application {
 		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, p);
 		System.out.println(gm.toString());
 		
-		Pioche pio = new Pioche();
-		Serviteur ba = new Serviteur("Busard affame", 5, null, 2, 3, pio);
+		Pioche pio1 = new Pioche(1);
+		Serviteur ba = new Serviteur("Busard affame", 5, null, 2, 3, pio1);
 		System.out.println(ba.toString());
 		
-		Sort ch = new Sort("Charge", 1, null);
+		Sort ch = new Sort("Charge", 1, null, c);
 		System.out.println(ch.toString());
 		
-		Sort attm = new Sort("Attaque mentale", 2, null);
+		AttaqueCiblee ac = new AttaqueCiblee();
+		Sort attm = new Sort("Attaque mentale", 2, null, ac);
 		System.out.println(attm.toString());
 		
-		Sort cdf = new Sort("Chox de flamme", 7, null);
+		AttaqueTotale at = new AttaqueTotale();
+		Sort cdf = new Sort("Choc de flamme", 7, null, at);
 		System.out.println(cdf.toString());
 		
-		Sort edg = new Sort("Eclair de givre", 2, null);
+		Sort edg = new Sort("Eclair de givre", 2, null, ac);
 		System.out.println(edg.toString());
 		
-		Sort ida = new Sort("Intelligence des arcanes", 2, null);
+		Pioche pio2 = new Pioche(2);
+		Sort ida = new Sort("Intelligence des arcanes", 2, null, pio2);
 		System.out.println(ida.toString());
 		
-		Sort im = new Sort("Image mirroir", 1, null);
+		Sort im = new Sort("Image mirroir", 1, null, pio1); // invocation de monstre A FAIRE !!!!!!!!!!!!
 		System.out.println(im.toString());
 		
-		Sort epy = new Sort("Explosion pyrotechnique", 10, null);
+		Sort epy = new Sort("Explosion pyrotechnique", 10, null, ac);
 		System.out.println(epy.toString());
 		
-		Sort mdc = new Sort("Marque du chasseur", 1, null);
+		Sort mdc = new Sort("Marque du chasseur", 1, null, ac );  // abaisse les pdv a 1  A FAIRE !!!!!!!!!!!
 		System.out.println(mdc.toString());
 		
-		Sort tda = new Sort("Tir des arcanes", 1, null);
+		Sort tda = new Sort("Tir des arcanes", 1, null, ac);
 		System.out.println(tda.toString());
 		
-		Sort llc = new Sort("Lacher les chiens", 3, null);
+		Sort llc = new Sort("Lacher les chiens", 3, null, p); // invocation de monstre A FAIRE !!!!!!!!!!!!
 		System.out.println(llc.toString());
 		
-		Sort odt = new Sort("Ordre de tuer", 3, null);
+		Sort odt = new Sort("Ordre de tuer", 3, null, ac);
 		System.out.println(odt.toString());
 		
 	}

@@ -1,5 +1,6 @@
 package carte;
 
+import capacite.Capacite;
 import jeu.IJoueur;
 
 public class Sort extends Carte {

@@ -7,8 +7,9 @@ public class Pioche extends Capacite {
 	
 	private int nbr;
 
-	public Pioche() {
+	public Pioche(int nb) {
 		super("Pioche", "Permet de piocher une ou plusieurs cartes.");
+		setNbr(nb);
 	}
 	
 	public void setNbr(int n) {
