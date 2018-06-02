@@ -79,11 +79,4 @@ public class Carte implements ICarte {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public boolean disparait() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

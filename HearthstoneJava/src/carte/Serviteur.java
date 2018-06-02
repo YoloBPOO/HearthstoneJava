@@ -53,4 +53,8 @@ public class Serviteur extends Carte {
 		return "Serviteur [" + super.toString() + " - Pdv : " + this.getPdv() + " - Att : " + this.getAtt() + (this.getCapacite()).toString()+ "]";
 	}
 	
+	public boolean disparait() {
+		return this.getPdv()<=0;
+	}
+	
 }

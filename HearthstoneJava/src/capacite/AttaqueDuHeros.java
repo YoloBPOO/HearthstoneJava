@@ -1,6 +1,6 @@
 package capacite;
 
-import jeu.HearthstoneException;
+import jeu.*;
 
 public class AttaqueDuHeros extends Capacite {
 
@@ -15,7 +15,10 @@ public class AttaqueDuHeros extends Capacite {
 	public void executerEffetFinTour() throws HearthstoneException {}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {}
+	public void executerAction(Object cible) throws HearthstoneException {
+		Heros adv = (Plateau.getAdversaire(Plateau.getJoueurCourant()).getHeros());
+		(Plateau.getAdversaire(cible)).setPointDeVie(adversaire.getPointDeVie() - this.getDegat());
+	}
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
