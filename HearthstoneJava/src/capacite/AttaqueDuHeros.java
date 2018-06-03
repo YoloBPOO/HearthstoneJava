@@ -2,10 +2,10 @@ package capacite;
 
 import jeu.*;
 
-public class AttaqueDuHeros extends Capacite {
+public class AttaqueDuHeros extends Attaque {
 
-	public AttaqueDuHeros() {
-		super("Attaque du Heros", "Permet à la carte qui la possède, d'attaquer le héros adverse, en toute circonstance, y compris lorsque le héros est protégé par la provocation.");
+	public AttaqueDuHeros(int d) {
+		super("Attaque du Heros", "Permet à la carte qui la possède, d'attaquer le héros adverse, en toute circonstance, y compris lorsque le héros est protégé par la provocation.",d);
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class AttaqueDuHeros extends Capacite {
 	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
 		Heros adv = (Plateau.getAdversaire(Plateau.getJoueurCourant()).getHeros());
-		(Plateau.getAdversaire(cible)).setPointDeVie(adversaire.getPointDeVie() - this.getDegat());
+		adv.setPdv(adv.getPdv() - this.getDegat());
 	}
 
 	@Override
