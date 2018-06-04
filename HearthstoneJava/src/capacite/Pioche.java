@@ -27,13 +27,15 @@ public class Pioche extends Capacite {
 	public void executerEffetFinTour() throws HearthstoneException {}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {}
-
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+	public void executerAction(Object cible) throws HearthstoneException {
 		for(int i = 0; i < this.nbr; i++) {
 			((Joueur)cible).piocher();
 		}
+	}
+
+	@Override
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+		this.executerAction(cible);
 	}
 
 	@Override

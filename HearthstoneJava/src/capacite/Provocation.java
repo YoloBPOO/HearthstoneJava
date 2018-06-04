@@ -1,6 +1,5 @@
 package capacite;
 
-import carte.Serviteur;
 import jeu.HearthstoneException;
 
 public class Provocation extends Capacite {

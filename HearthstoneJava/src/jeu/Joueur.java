@@ -2,20 +2,9 @@ package jeu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import capacite.*;
+import carte.*;
 
-import capacite.AttaqueCiblee;
-import capacite.AttaqueTotale;
-import capacite.BouleDeFeu;
-import capacite.Charge;
-import capacite.EffetPermanent;
-import capacite.FlecheDuChasseur;
-import capacite.InvocationDeServiteurs;
-import capacite.Pioche;
-import capacite.Provocation;
-import carte.Carte;
-import carte.ICarte;
-import carte.Serviteur;
-import carte.Sort;
 
 public class Joueur implements IJoueur {
 	
@@ -77,78 +66,108 @@ public class Joueur implements IJoueur {
 	
 	// MÈthodes
 	
-	public void creationDeck() {
-		InvocationDeServiteurs ids = new InvocationDeServiteurs(1,1);
-		Serviteur cmm = new Serviteur("Chasse-mar√©e murloc", 2, null, 1, 2, ids);
+	public void creationDeckMage(IJoueur joueur) throws HearthstoneException  {
+		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, joueur, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,joueur,1,1,null),1));
 		deck.add(cmm);
-		
-		EffetPermanent ep = new EffetPermanent(1,1);
-		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, null, 6, 6, ep);
+
+		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, joueur, 6, 6,new EffetPermanent(1,1));
 		deck.add(cdh);
 
-		EffetPermanent epe = new EffetPermanent(0,1);
-		Serviteur cdr = new Serviteur("Chef de raid", 3, null, 2, 2, epe);
+		Serviteur cdr = new Serviteur("Chef de raid", 3, joueur, 2, 2, new EffetPermanent(0,1));
 		deck.add(cdr);
 		
 		Provocation p = new Provocation();
-		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, null, 4, 5, p);
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, joueur, 4, 5, p);
 		deck.add(gbb);
 		
 		Charge c = new Charge();
-		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, null, 2, 5, c);
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, joueur, 2, 5, c);
 		deck.add(lmt);
 		
-		Serviteur om = new Serviteur("L'ogre-magi", 4, null, 4, 4, p);
+		Serviteur om = new Serviteur("L'ogre-magi", 4, joueur, 4, 4, p);
 		deck.add(om);
 		
-		Serviteur am = new Serviteur("Archimage", 6, null, 7, 4, p);
+		Serviteur am = new Serviteur("Archimage", 6, joueur, 7, 4, p);
 		deck.add(am);
 		
-		Serviteur gl = new Serviteur("Gnome lepreux", 1, null, 1, 1, p);
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, joueur, 1, 1, new Lepre());
 		deck.add(gl);
 		
-		Serviteur gm = new Serviteur("Golem des moissons", 3, null, 3, 2, p);
+		Serviteur gm = new Serviteur("Golem des moissons", 3, joueur, 3, 2, new Golemisation(joueur));
 		deck.add(gm);
 		
-		Pioche pio1 = new Pioche(1);
-		Serviteur ba = new Serviteur("Busard affame", 5, null, 2, 3, pio1);
-		deck.add(ba);
-		
-		Sort ch = new Sort("Charge", 1, null, c);
+		Sort ch = new Sort("Charge", 1, joueur, c);
 		deck.add(ch);
 		
-		AttaqueCiblee ac = new AttaqueCiblee(2);
-		Sort attm = new Sort("Attaque mentale", 2, null, ac);
+		Sort attm = new Sort("Attaque mentale", 2, joueur, new AttaqueCiblee(2));
 		deck.add(attm);
 		
-		AttaqueTotale at = new AttaqueTotale();
-		Sort cdf = new Sort("Choc de flamme", 7, null, at);
+		Sort cdf = new Sort("Choc de flamme", 7, joueur, new AttaqueTotale(4));
 		deck.add(cdf);
 		
-		Sort edg = new Sort("Eclair de givre", 2, null, ac);
+		Sort edg = new Sort("Eclair de givre", 2, joueur, new AttaqueCiblee(3));
 		deck.add(edg);
 		
-		Pioche pio2 = new Pioche(2);
-		Sort ida = new Sort("Intelligence des arcanes", 2, null, pio2);
+		Sort ida = new Sort("Intelligence des arcanes", 2, joueur, new Pioche(2));
 		deck.add(ida);
 		
-		Sort im = new Sort("Image mirroir", 1, null, pio1); // invocation de monstre A FAIRE !!!!!!!!!!!!
+		Sort im = new Sort("Image mirroir", 1, joueur, new ImageMirroir(joueur));
 		deck.add(im);
 		
-		Sort epy = new Sort("Explosion pyrotechnique", 10, null, ac);
+		Sort epy = new Sort("Explosion pyrotechnique", 10, joueur, new AttaqueCiblee(10));
 		deck.add(epy);
+	}
+	
+	public void creationDeckChasseur(IJoueur joueur) throws HearthstoneException {
+		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, joueur, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,joueur,1,1,null),1));
+		deck.add(cmm);
+
+		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, joueur, 6, 6,new EffetPermanent(1,1));
+		deck.add(cdh);
+
+		Serviteur cdr = new Serviteur("Chef de raid", 3, joueur, 2, 2, new EffetPermanent(0,1));
+		deck.add(cdr);
 		
-		Sort mdc = new Sort("Marque du chasseur", 1, null, ac );  // abaisse les pdv a 1  A FAIRE !!!!!!!!!!!
+		Provocation p = new Provocation();
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, joueur, 4, 5, p);
+		deck.add(gbb);
+		
+		Charge c = new Charge();
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, joueur, 2, 5, c);
+		deck.add(lmt);
+		
+		Serviteur om = new Serviteur("L'ogre-magi", 4, joueur, 4, 4, p);
+		deck.add(om);
+		
+		Serviteur am = new Serviteur("Archimage", 6, joueur, 7, 4, p);
+		deck.add(am);
+		
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, joueur, 1, 1, new Lepre());
+		deck.add(gl);
+		
+		Serviteur gm = new Serviteur("Golem des moissons", 3, joueur, 3, 2, new Golemisation(joueur));
+		deck.add(gm);
+		
+		Sort ch = new Sort("Charge", 1, joueur, c);
+		deck.add(ch);
+		
+		Sort attm = new Sort("Attaque mentale", 2, joueur, new AttaqueCiblee(2));
+		deck.add(attm);
+		
+		Sort mdc = new Sort("Marque du chasseur", 1, joueur, new MarqueDuChasseur());
 		deck.add(mdc);
 		
-		Sort tda = new Sort("Tir des arcanes", 1, null, ac);
+		Sort tda = new Sort("Tir des arcanes", 1, joueur, new AttaqueCiblee(2));
 		deck.add(tda);
 		
-		Sort llc = new Sort("Lacher les chiens", 3, null, p); // invocation de monstre A FAIRE !!!!!!!!!!!!
+		Sort llc = new Sort("Lacher les chiens", 3, joueur, new InvocationDesChiens(joueur));
 		deck.add(llc);
 		
-		Sort odt = new Sort("Ordre de tuer", 3, null, ac);
+		Sort odt = new Sort("Ordre de tuer", 3, joueur, new AttaqueCiblee(3));
 		deck.add(odt);
+		
+		Serviteur ba = new Serviteur("Busard affame", 5, joueur, 2, 3, new Pioche(1));
+		deck.add(ba);
 	}
 		
 	
@@ -178,7 +197,7 @@ public class Joueur implements IJoueur {
 
 	public ICarte getCarteEnMain(String nomCarteMain) {
 		for (ICarte carte : main) {
-			if(main.contains(nomCarteMain)){
+			if(carte.getNom().contains(nomCarteMain)){
 			    return carte;
 			}
 		}
@@ -186,13 +205,24 @@ public class Joueur implements IJoueur {
 	}
 
 	public void prendreTour() throws HearthstoneException {
-		this.stockMana += 1; 
-		this.mana = this.stockMana;
+		if (this.getMana()<MAX_MANA)
+			this.mana += 1; 
+		this.stockMana = this.mana;
+		this.piocher();
+		for(ICarte carte :this.jeu) {
+			if (carte instanceof Serviteur) {
+				if ( ((Serviteur) carte).getJouable()==false) {
+					((Serviteur) carte).setJouable(true);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void finirTour() throws HearthstoneException {
-		
+		for (ICarte carte : this.getJeu())
+			carte.executerEffetFinTour(Plateau.getInstance().getAdversaire(this));
+		Plateau.getInstance().finTour(this);
 	}
 
 	public void melanger() {
@@ -201,20 +231,39 @@ public class Joueur implements IJoueur {
 	
 	@Override
 	public void piocher() throws HearthstoneException {
-		this.main.add(this.deck.get(0));
-		this.deck.remove(0);
+		if (this.jeu.size()!=0) {
+			this.main.add(this.deck.get(0));
+			this.deck.remove(0);
+		}
 	}
 
 	@Override
 	public void jouerCarte(ICarte carte) throws HearthstoneException {
-		// TODO Auto-generated method stub
+			if (carte.getCout() > this.getStockMana())
+				throw new HearthstoneException("Mana insuffisant");
+			this.getMain().remove(carte);
+			if(carte instanceof Serviteur) {
+				if (this.jeu.size()>=MAX_PLATEAU)
+					throw new HearthstoneException("Plateau plein");
+				this.jeu.add(carte);
+			}
+			carte.executerEffetDebutMiseEnJeu(carte);
+			this.setMs(this.getStockMana()-carte.getCout());
 	}
 
 	
 	@Override
 	public void jouerCarte(ICarte carte, Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		if (carte.getCout() > this.getStockMana())
+			throw new HearthstoneException("Mana insuffisant");
+		this.getMain().remove(carte);
+		if(carte instanceof Serviteur) {
+			if (this.jeu.size()>=MAX_PLATEAU)
+				throw new HearthstoneException("Plateau plein");
+			this.jeu.add(carte);
+		}
+		carte.executerEffetDebutMiseEnJeu(cible);
+		this.setMs(this.getStockMana()-carte.getCout());
 	}
 
 	@Override

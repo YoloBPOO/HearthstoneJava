@@ -6,7 +6,7 @@ import carte.*;
 
 public class MarqueDuChasseur extends Attaque {
 
-		public MarqueDuChasseur(int d) {
+		public MarqueDuChasseur() {
 			super("Marque du Chasseur", "Modifie le spoints de vie du serviteur cible a 1", 0);
 		}
 		
