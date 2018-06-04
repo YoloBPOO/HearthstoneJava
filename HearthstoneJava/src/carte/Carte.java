@@ -1,19 +1,21 @@
 package carte;
 
-import jeu.HearthstoneException;
+import capacite.ICapacite;
 import jeu.IJoueur;
 
 public abstract class Carte implements ICarte {
 	private String nom;
 	private int cout;
 	private IJoueur proprietaire;
+	private ICapacite capacite;
 	
 	// Constructeur
 	
-	public Carte(String n, int c, IJoueur p) {
+	public Carte(String n, int c, IJoueur p, ICapacite capa) {
 		setNom(n);
 		setCout(c);
 		setProprietaire(p);
+		setCapacite(capa);
 	}
 
 	// Setters
@@ -30,6 +32,10 @@ public abstract class Carte implements ICarte {
 		this.proprietaire=p;
 	}
 	
+	public void setCapacite(ICapacite c) {
+		this.capacite=c;
+	}
+	
 	// Getters
 
 	public String getNom() {
@@ -38,6 +44,10 @@ public abstract class Carte implements ICarte {
 
 	public int getCout() {
 		return cout;
+	}
+	
+	public ICapacite getCapacite() {
+		return this.capacite;
 	}
 
 	public IJoueur getProprietaire() {
@@ -48,35 +58,5 @@ public abstract class Carte implements ICarte {
 	
 	public String toString() {
 		return "Nom : " + this.getNom() + " - Cout : " + this.getCout();
-	}
-
-	@Override
-	public void executerEffetDebutTour(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void executerEffetFinTour(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
 	}
 }

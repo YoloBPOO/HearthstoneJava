@@ -19,7 +19,7 @@ public class Plateau implements IPlateau {
 	}
 
 	public IJoueur getJoueurCourant() {
-		return joueurCourant;
+		return this.joueurCourant;
 	}
 
 	public void setJoueurCourant(IJoueur joueur) throws HearthstoneException {
@@ -27,6 +27,8 @@ public class Plateau implements IPlateau {
 	}
 
 	public IJoueur getAdversaire(IJoueur joueur) throws HearthstoneException {
+		if(joueur==null) 
+			throw new HearthstoneException("Pas de joueur");
 		if(!joueurs.contains(joueur)) 
 			throw new HearthstoneException("Le joueur n'existe pas");
 		if(this.getJoueurCourant() == joueurs.get(0)) 

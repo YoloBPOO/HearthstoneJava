@@ -9,6 +9,38 @@ import capacite.*;
 
 public class application {
 
+	
+	public static void board() throws HearthstoneException {
+		
+		ArrayList<ICarte> joueurCourant=Plateau.getInstance().getJoueurCourant().getMain();
+		ArrayList<ICarte> joueurAdverse=Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getMain();
+		
+		System.out.println(joueurCourant.get(0));
+				
+		System.out.println("_______________________________________________________");
+		System.out.println("\n");
+		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()));
+		System.out.println("\n");
+		System.out.println("_______________________________________________________");
+		System.out.println("\n");
+		System.out.println("==========================================================");
+		System.out.println("\n");
+		System.out.println(joueurAdverse);
+		System.out.println("\n");
+		System.out.println("----------------------------------------------------------");
+		System.out.println("\n");
+		System.out.println(joueurCourant);
+		System.out.println("\n");
+		System.out.println("==========================================================");
+		System.out.println("\n");
+		System.out.println("_______________________________________________________");
+		System.out.println("\n");
+		System.out.println(Plateau.getInstance().getJoueurCourant());
+		System.out.println("\n");
+		System.out.println("_______________________________________________________");
+		
+	}
+
 	public static void main(String[] args) throws HearthstoneException {
 		String pseudoJ1, pseudoJ2, choix;
 		Scanner sc = new Scanner(System.in);
@@ -32,13 +64,13 @@ public class application {
 				
 		if (carac == 'J' || carac == 'j') {
 			joueur1 = new Joueur(jaina,pseudoJ1,0,0);
-			joueur1.creationDeckMage(joueur1);
-			joueur1.melanger();	
+			joueur1.piocher();
+			joueur1.piocher();
 		}
 		else {
 			joueur1 = new Joueur(rexxar,pseudoJ1,0,0);
-			joueur1.creationDeckChasseur(joueur1);
-			joueur1.melanger();	
+			joueur1.piocher();
+			joueur1.piocher();
 		}
 			
 		
@@ -53,41 +85,23 @@ public class application {
 			
 		if (carac == 'J' || carac == 'j') {
 			joueur2 = new Joueur(jaina,pseudoJ2,0,0);
-			joueur2.creationDeckMage(joueur2);
-			joueur2.melanger();
 		}
 		else {
 			joueur2 = new Joueur(rexxar,pseudoJ2,0,0);
-			joueur2.creationDeckChasseur(joueur2);
-			joueur2.melanger();
 		}		
 				
 		Plateau.getInstance().ajouterJoueur(joueur1);
 		Plateau.getInstance().ajouterJoueur(joueur2);
 		
-		System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros());
-			
+		System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros().getNom() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros().getNom());
 		
+		Plateau.getInstance().demarrerPartie();
+		Plateau.getInstance().getJoueurCourant().piocher();
+		Plateau.getInstance().getJoueurCourant().piocher();
+		Plateau.getInstance().getJoueurCourant().piocher();
+		System.out.println(((Joueur) Plateau.getInstance().getJoueurCourant()).getDeck().get(0));
 		
-		for(i=0 ; i<2 ; i++)
-		{
-			joueur1.piocher();
-			joueur2.piocher();
-		}
-				
-		System.out.println("Joueur 1 carte en main :");		
-		for(i=0 ; i < joueur1.main.size() ; i++)
-		{
-			System.out.println(joueur1.main.get(i));
-		}
-			
-		System.out.println("Joueur 2 carte en main : ");
-		for(i=0 ; i < joueur2.main.size() ; i++)
-		{
-			System.out.println(joueur2.main.get(i));
-		}
-
-			
+		//board();
 			
 	}
 	

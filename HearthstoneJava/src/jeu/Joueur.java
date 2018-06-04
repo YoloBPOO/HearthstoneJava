@@ -19,11 +19,19 @@ public class Joueur implements IJoueur {
 	
 	// Constructeur
 
-	public Joueur(Heros h, String p, int m, int ms) {
+	public Joueur(Heros h, String p, int m, int ms) throws HearthstoneException {
 		setHeros(h);
 		setPseudo(p);
 		setMana(m);
 		setMs(ms);
+		this.deck=new ArrayList<ICarte>();
+		this.jeu=new ArrayList<ICarte>();
+		this.main=new ArrayList<ICarte>();
+		if (heros.getNom().contains("Jaina")) 
+			this.creationDeckMage();
+		else if (heros.getNom().contains("Rexxar")) 
+			this.creationDeckChasseur();
+		melanger();
 	}
 	
 	// Setters
@@ -66,107 +74,107 @@ public class Joueur implements IJoueur {
 	
 	// Méthodes
 	
-	public void creationDeckMage(IJoueur joueur) throws HearthstoneException  {
-		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, joueur, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,joueur,1,1,null),1));
+	public void creationDeckMage() throws HearthstoneException  {
+		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, this, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,this,1,1,null),1));
 		deck.add(cmm);
 
-		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, joueur, 6, 6,new EffetPermanent(1,1));
+		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, this, 6, 6,new EffetPermanent(1,1));
 		deck.add(cdh);
 
-		Serviteur cdr = new Serviteur("Chef de raid", 3, joueur, 2, 2, new EffetPermanent(0,1));
+		Serviteur cdr = new Serviteur("Chef de raid", 3, this, 2, 2, new EffetPermanent(0,1));
 		deck.add(cdr);
 		
 		Provocation p = new Provocation();
-		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, joueur, 4, 5, p);
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, this, 4, 5, p);
 		deck.add(gbb);
 		
 		Charge c = new Charge();
-		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, joueur, 2, 5, c);
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, this, 2, 5, c);
 		deck.add(lmt);
 		
-		Serviteur om = new Serviteur("L'ogre-magi", 4, joueur, 4, 4, p);
+		Serviteur om = new Serviteur("L'ogre-magi", 4, this, 4, 4, p);
 		deck.add(om);
 		
-		Serviteur am = new Serviteur("Archimage", 6, joueur, 7, 4, p);
+		Serviteur am = new Serviteur("Archimage", 6, this, 7, 4, p);
 		deck.add(am);
 		
-		Serviteur gl = new Serviteur("Gnome lepreux", 1, joueur, 1, 1, new Lepre());
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, this, 1, 1, new Lepre());
 		deck.add(gl);
 		
-		Serviteur gm = new Serviteur("Golem des moissons", 3, joueur, 3, 2, new Golemisation(joueur));
+		Serviteur gm = new Serviteur("Golem des moissons", 3, this, 3, 2, new Golemisation(this));
 		deck.add(gm);
 		
-		Sort ch = new Sort("Charge", 1, joueur, c);
+		Sort ch = new Sort("Charge", 1, this, c);
 		deck.add(ch);
 		
-		Sort attm = new Sort("Attaque mentale", 2, joueur, new AttaqueCiblee(2));
+		Sort attm = new Sort("Attaque mentale", 2, this, new AttaqueCiblee(2));
 		deck.add(attm);
 		
-		Sort cdf = new Sort("Choc de flamme", 7, joueur, new AttaqueTotale(4));
+		Sort cdf = new Sort("Choc de flamme", 7, this, new AttaqueTotale(4));
 		deck.add(cdf);
 		
-		Sort edg = new Sort("Eclair de givre", 2, joueur, new AttaqueCiblee(3));
+		Sort edg = new Sort("Eclair de givre", 2, this, new AttaqueCiblee(3));
 		deck.add(edg);
 		
-		Sort ida = new Sort("Intelligence des arcanes", 2, joueur, new Pioche(2));
+		Sort ida = new Sort("Intelligence des arcanes", 2, this, new Pioche(2));
 		deck.add(ida);
 		
-		Sort im = new Sort("Image mirroir", 1, joueur, new ImageMirroir(joueur));
+		Sort im = new Sort("Image mirroir", 1, this, new ImageMirroir(this));
 		deck.add(im);
 		
-		Sort epy = new Sort("Explosion pyrotechnique", 10, joueur, new AttaqueCiblee(10));
+		Sort epy = new Sort("Explosion pyrotechnique", 10, this, new AttaqueCiblee(10));
 		deck.add(epy);
 	}
 	
-	public void creationDeckChasseur(IJoueur joueur) throws HearthstoneException {
-		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, joueur, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,joueur,1,1,null),1));
+	public void creationDeckChasseur() throws HearthstoneException {
+		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, this, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,this,1,1,null),1));
 		deck.add(cmm);
 
-		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, joueur, 6, 6,new EffetPermanent(1,1));
+		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, this, 6, 6,new EffetPermanent(1,1));
 		deck.add(cdh);
 
-		Serviteur cdr = new Serviteur("Chef de raid", 3, joueur, 2, 2, new EffetPermanent(0,1));
+		Serviteur cdr = new Serviteur("Chef de raid", 3, this, 2, 2, new EffetPermanent(0,1));
 		deck.add(cdr);
 		
 		Provocation p = new Provocation();
-		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, joueur, 4, 5, p);
+		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, this, 4, 5, p);
 		deck.add(gbb);
 		
 		Charge c = new Charge();
-		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, joueur, 2, 5, c);
+		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, this, 2, 5, c);
 		deck.add(lmt);
 		
-		Serviteur om = new Serviteur("L'ogre-magi", 4, joueur, 4, 4, p);
+		Serviteur om = new Serviteur("L'ogre-magi", 4, this, 4, 4, p);
 		deck.add(om);
 		
-		Serviteur am = new Serviteur("Archimage", 6, joueur, 7, 4, p);
+		Serviteur am = new Serviteur("Archimage", 6, this, 7, 4, p);
 		deck.add(am);
 		
-		Serviteur gl = new Serviteur("Gnome lepreux", 1, joueur, 1, 1, new Lepre());
+		Serviteur gl = new Serviteur("Gnome lepreux", 1, this, 1, 1, new Lepre());
 		deck.add(gl);
 		
-		Serviteur gm = new Serviteur("Golem des moissons", 3, joueur, 3, 2, new Golemisation(joueur));
+		Serviteur gm = new Serviteur("Golem des moissons", 3, this, 3, 2, new Golemisation(this));
 		deck.add(gm);
 		
-		Sort ch = new Sort("Charge", 1, joueur, c);
+		Sort ch = new Sort("Charge", 1, this, c);
 		deck.add(ch);
 		
-		Sort attm = new Sort("Attaque mentale", 2, joueur, new AttaqueCiblee(2));
+		Sort attm = new Sort("Attaque mentale", 2, this, new AttaqueCiblee(2));
 		deck.add(attm);
 		
-		Sort mdc = new Sort("Marque du chasseur", 1, joueur, new MarqueDuChasseur());
+		Sort mdc = new Sort("Marque du chasseur", 1, this, new MarqueDuChasseur());
 		deck.add(mdc);
 		
-		Sort tda = new Sort("Tir des arcanes", 1, joueur, new AttaqueCiblee(2));
+		Sort tda = new Sort("Tir des arcanes", 1, this, new AttaqueCiblee(2));
 		deck.add(tda);
 		
-		Sort llc = new Sort("Lacher les chiens", 3, joueur, new InvocationDesChiens(joueur));
+		Sort llc = new Sort("Lacher les chiens", 3, this, new InvocationDesChiens(this));
 		deck.add(llc);
 		
-		Sort odt = new Sort("Ordre de tuer", 3, joueur, new AttaqueCiblee(3));
+		Sort odt = new Sort("Ordre de tuer", 3, this, new AttaqueCiblee(3));
 		deck.add(odt);
 		
-		Serviteur ba = new Serviteur("Busard affame", 5, joueur, 2, 3, new Pioche(1));
+		Serviteur ba = new Serviteur("Busard affame", 5, this, 2, 3, new Pioche(1));
 		deck.add(ba);
 	}
 		

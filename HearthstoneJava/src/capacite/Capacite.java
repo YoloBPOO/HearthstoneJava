@@ -40,7 +40,7 @@ public class Capacite implements ICapacite {
 	// Méthodes
 	
 	public String toString() {
-		return " - Capacité [ Nom : " + this.getNom() + " - Description : " + this.getDescription() + " ]";
+		return " - Capacité [" + this.getNom() + " --> " + this.getDescription() + " ]";
 	}
 	
 	@Override

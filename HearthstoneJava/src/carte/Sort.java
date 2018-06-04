@@ -1,17 +1,14 @@
 package carte;
 
-import capacite.Capacite;
-import jeu.IJoueur;
+import capacite.*;
+import jeu.*;
 
 public class Sort extends Carte {
 	
 	private Capacite capacite;
 
 	public Sort(String n, int c, IJoueur p, Capacite capacite) {
-		super(n, c, p);
-		this.setCapacite(capacite);
-		
-		// TODO Auto-generated constructor stub
+		super(n, c, p, capacite);
 	}
 	
 	public void setCapacite(Capacite c) {
@@ -23,7 +20,27 @@ public class Sort extends Carte {
 	}
 	
 	public String toString() {
-		return "Sort [" + super.toString() + (this.getCapacite()).toString() + "]";
+		String s="Sort [" + super.toString();
+		if (this.getCapacite() != null)
+			s+= " Capacite " +this.getCapacite();
+		s+= "]";
+		return s;
+	}
+
+	public void executerEffetDebutTour(Object cible) throws HearthstoneException {}
+
+	public void executerEffetFinTour(Object cible) throws HearthstoneException {}
+
+	public void executerEffetDebutMiseEnJeu(Object cible) throws HearthstoneException {
+		this.getCapacite().executerAction(cible);
+	}
+
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
+
+	public void executerAction(Object cible) throws HearthstoneException {}
+
+	public boolean disparait() {
+		return false;
 	}
 
 }
