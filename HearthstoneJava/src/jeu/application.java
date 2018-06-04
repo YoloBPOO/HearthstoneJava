@@ -8,13 +8,12 @@ import capacite.*;
 
 
 public class application {
-	
+
 	public static void main(String[] args) throws HearthstoneException {
-		ArrayList<ICarte> deck = new ArrayList<ICarte>();
-		int i;
 		String pseudoJ1, pseudoJ2, choix;
-		char carac;
 		Scanner sc = new Scanner(System.in);
+		int i;
+		char carac;
 		Joueur joueur1, joueur2;
 		
 		BouleDeFeu bdf = new BouleDeFeu();
@@ -23,7 +22,6 @@ public class application {
 		FlecheDuChasseur fdc = new FlecheDuChasseur();
 		Heros rexxar = new Heros("Rexxar", 15, fdc);
 		
-			
 		System.out.println("Entrez le pseudo du joueur 1 : ");
 		pseudoJ1 = sc.nextLine();
 		System.out.println("Quel Heros voulez-vous jouer (J/R) : ");
@@ -34,13 +32,16 @@ public class application {
 				
 		if (carac == 'J' || carac == 'j') {
 			joueur1 = new Joueur(jaina,pseudoJ1,0,0);
+			joueur1.creationDeckMage(joueur1);
+			joueur1.melanger();	
 		}
 		else {
 			joueur1 = new Joueur(rexxar,pseudoJ1,0,0);
+			joueur1.creationDeckChasseur(joueur1);
+			joueur1.melanger();	
 		}
 			
-		joueur1.creationDeck();
-		joueur1.melanger();	
+		
 			
 		System.out.println("Entrez le pseudo du joueur 2 : ");
 		pseudoJ2 = sc.nextLine();
@@ -52,16 +53,22 @@ public class application {
 			
 		if (carac == 'J' || carac == 'j') {
 			joueur2 = new Joueur(jaina,pseudoJ2,0,0);
+			joueur2.creationDeckMage(joueur2);
+			joueur2.melanger();
 		}
 		else {
 			joueur2 = new Joueur(rexxar,pseudoJ2,0,0);
-		}
-			
-		joueur2.creationDeck();
-		joueur2.melanger();
-			
+			joueur2.creationDeckChasseur(joueur2);
+			joueur2.melanger();
+		}		
+				
+		Plateau.getInstance().ajouterJoueur(joueur1);
+		Plateau.getInstance().ajouterJoueur(joueur2);
+		
 		System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros());
 			
+		
+		
 		for(i=0 ; i<2 ; i++)
 		{
 			joueur1.piocher();

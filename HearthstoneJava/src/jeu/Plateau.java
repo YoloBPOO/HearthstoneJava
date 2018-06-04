@@ -1,54 +1,61 @@
 package jeu;
 
+import java.util.ArrayList;
+
 public class Plateau implements IPlateau {
 	private static IPlateau inPlateau = null;
+	private ArrayList<IJoueur> joueurs = new ArrayList<IJoueur>();
+	private IJoueur joueurCourant = null;
+	private boolean demarrer = false;
 
-	@Override
 	public void ajouterJoueur(IJoueur joueur) throws HearthstoneException {
-		// TODO Auto-generated method stub
-		
+		if (joueur==null) 
+			throw new HearthstoneException("Joueur vide");
+		if (joueurs.size() == 2) 
+			throw new HearthstoneException("Joueur max atteind");
+		if (joueurs.contains(joueur))
+			throw new HearthstoneException("Le joueur fait deja partie du plateau");
+		joueurs.add(joueur);
 	}
 
-	@Override
 	public IJoueur getJoueurCourant() {
-		// TODO Auto-generated method stub
-		return null;
+		return joueurCourant;
 	}
 
-	@Override
 	public void setJoueurCourant(IJoueur joueur) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		this.joueurCourant=joueur;
 	}
 
-	@Override
 	public IJoueur getAdversaire(IJoueur joueur) throws HearthstoneException {
-		// TODO Auto-generated method stub
-		return null;
+		if(!joueurs.contains(joueur)) 
+			throw new HearthstoneException("Le joueur n'existe pas");
+		if(this.getJoueurCourant() == joueurs.get(0)) 
+			return this.joueurs.get(1);
+		else
+			return this.joueurs.get(0);
 	}
 
-	@Override
 	public void demarrerPartie() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		if(this.joueurs.size()!=2) 
+			throw new HearthstoneException("Il faut 2 joueurs pour demarrer une partie");
+		this.demarrer=true;
+		
+		this.setJoueurCourant(joueurs.get(0));
+		this.getJoueurCourant().prendreTour();
 	}
-
-	@Override
+	
 	public boolean estDemarree() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.demarrer;
 	}
 
-	@Override
 	public void finTour(IJoueur joueur) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		this.setJoueurCourant(this.getAdversaire(joueur));
+		this.getJoueurCourant().prendreTour();
 	}
 
-	@Override
 	public void gagnePartie(IJoueur joueur) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		System.out.println(this.getJoueurCourant().getPseudo()+" a gagné la partie ! Bravo !");
+		this.demarrer=false;
 	}
 	
 	public static IPlateau getInstance() {

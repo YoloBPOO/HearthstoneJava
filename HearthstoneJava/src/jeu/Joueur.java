@@ -188,7 +188,7 @@ public class Joueur implements IJoueur {
 
 	public ICarte getCarteEnJeu(String nomCarte){
 		for (ICarte carte : jeu) {
-			if(jeu.contains(nomCarte)){
+			if(carte.getNom().contains(nomCarte)){
 			    return carte;
 			}
 		}
