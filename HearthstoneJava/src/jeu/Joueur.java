@@ -13,9 +13,9 @@ public class Joueur implements IJoueur {
 	private String pseudo;
 	private int mana;
 	private int stockMana;
-	ArrayList<ICarte> deck = new ArrayList<ICarte>();
-	ArrayList<ICarte> main = new ArrayList<ICarte>();
-	ArrayList<ICarte> jeu = new ArrayList<ICarte>();
+	private ArrayList<ICarte> deck = new ArrayList<ICarte>();
+	public ArrayList<ICarte> main = new ArrayList<ICarte>();
+	public ArrayList<ICarte> jeu = new ArrayList<ICarte>();
 	
 	// Constructeur
 
@@ -76,126 +76,126 @@ public class Joueur implements IJoueur {
 	
 	public void creationDeckMage() throws HearthstoneException  {
 		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, this, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,this,1,1,null),1));
-		deck.add(cmm);
+		this.deck.add(cmm);
 
 		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, this, 6, 6,new EffetPermanent(1,1));
-		deck.add(cdh);
+		this.deck.add(cdh);
 
 		Serviteur cdr = new Serviteur("Chef de raid", 3, this, 2, 2, new EffetPermanent(0,1));
-		deck.add(cdr);
+		this.deck.add(cdr);
 		
 		Provocation p = new Provocation();
 		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, this, 4, 5, p);
-		deck.add(gbb);
+		this.deck.add(gbb);
 		
 		Charge c = new Charge();
 		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, this, 2, 5, c);
-		deck.add(lmt);
+		this.deck.add(lmt);
 		
 		Serviteur om = new Serviteur("L'ogre-magi", 4, this, 4, 4, p);
-		deck.add(om);
+		this.deck.add(om);
 		
 		Serviteur am = new Serviteur("Archimage", 6, this, 7, 4, p);
-		deck.add(am);
+		this.deck.add(am);
 		
 		Serviteur gl = new Serviteur("Gnome lepreux", 1, this, 1, 1, new Lepre());
-		deck.add(gl);
+		this.deck.add(gl);
 		
 		Serviteur gm = new Serviteur("Golem des moissons", 3, this, 3, 2, new Golemisation(this));
-		deck.add(gm);
+		this.deck.add(gm);
 		
 		Sort ch = new Sort("Charge", 1, this, c);
-		deck.add(ch);
+		this.deck.add(ch);
 		
 		Sort attm = new Sort("Attaque mentale", 2, this, new AttaqueCiblee(2));
-		deck.add(attm);
+		this.deck.add(attm);
 		
 		Sort cdf = new Sort("Choc de flamme", 7, this, new AttaqueTotale(4));
-		deck.add(cdf);
+		this.deck.add(cdf);
 		
 		Sort edg = new Sort("Eclair de givre", 2, this, new AttaqueCiblee(3));
-		deck.add(edg);
+		this.deck.add(edg);
 		
 		Sort ida = new Sort("Intelligence des arcanes", 2, this, new Pioche(2));
-		deck.add(ida);
+		this.deck.add(ida);
 		
 		Sort im = new Sort("Image mirroir", 1, this, new ImageMirroir(this));
-		deck.add(im);
+		this.deck.add(im);
 		
 		Sort epy = new Sort("Explosion pyrotechnique", 10, this, new AttaqueCiblee(10));
-		deck.add(epy);
+		this.deck.add(epy);
 	}
 	
 	public void creationDeckChasseur() throws HearthstoneException {
 		Serviteur cmm = new Serviteur("Chasse-maree murloc", 2, this, 1, 2,new InvocationDeServiteurs("Murloc","",new Serviteur("Murloc",0,this,1,1,null),1));
-		deck.add(cmm);
+		this.deck.add(cmm);
 
 		Serviteur cdh = new Serviteur("Champion de Hurlevent", 7, this, 6, 6,new EffetPermanent(1,1));
-		deck.add(cdh);
+		this.deck.add(cdh);
 
 		Serviteur cdr = new Serviteur("Chef de raid", 3, this, 2, 2, new EffetPermanent(0,1));
-		deck.add(cdr);
+		this.deck.add(cdr);
 		
 		Provocation p = new Provocation();
 		Serviteur gbb = new Serviteur("Garde de Baie-du-butin", 5, this, 4, 5, p);
-		deck.add(gbb);
+		this.deck.add(gbb);
 		
 		Charge c = new Charge();
 		Serviteur lmt = new Serviteur("La missiliere temeraire", 6, this, 2, 5, c);
-		deck.add(lmt);
+		this.deck.add(lmt);
 		
 		Serviteur om = new Serviteur("L'ogre-magi", 4, this, 4, 4, p);
-		deck.add(om);
+		this.deck.add(om);
 		
 		Serviteur am = new Serviteur("Archimage", 6, this, 7, 4, p);
-		deck.add(am);
+		this.deck.add(am);
 		
 		Serviteur gl = new Serviteur("Gnome lepreux", 1, this, 1, 1, new Lepre());
-		deck.add(gl);
+		this.deck.add(gl);
 		
 		Serviteur gm = new Serviteur("Golem des moissons", 3, this, 3, 2, new Golemisation(this));
-		deck.add(gm);
+		this.deck.add(gm);
 		
 		Sort ch = new Sort("Charge", 1, this, c);
-		deck.add(ch);
+		this.deck.add(ch);
 		
 		Sort attm = new Sort("Attaque mentale", 2, this, new AttaqueCiblee(2));
-		deck.add(attm);
+		this.deck.add(attm);
 		
 		Sort mdc = new Sort("Marque du chasseur", 1, this, new MarqueDuChasseur());
-		deck.add(mdc);
+		this.deck.add(mdc);
 		
 		Sort tda = new Sort("Tir des arcanes", 1, this, new AttaqueCiblee(2));
-		deck.add(tda);
+		this.deck.add(tda);
 		
 		Sort llc = new Sort("Lacher les chiens", 3, this, new InvocationDesChiens(this));
-		deck.add(llc);
+		this.deck.add(llc);
 		
 		Sort odt = new Sort("Ordre de tuer", 3, this, new AttaqueCiblee(3));
-		deck.add(odt);
+		this.deck.add(odt);
 		
 		Serviteur ba = new Serviteur("Busard affame", 5, this, 2, 3, new Pioche(1));
-		deck.add(ba);
+		this.deck.add(ba);
 	}
 		
 	
 	public ArrayList<ICarte> getMain() {
-		return main;
+		return this.main;
 	}
 	public int size() {
 		return main.size();
 	}
 
 	public ArrayList<ICarte> getJeu() {
-		return jeu;
+		return this.jeu;
 	}
 	
 	public ArrayList<ICarte> getDeck() {
-		return deck;
+		return this.deck;
 	}
 
 	public ICarte getCarteEnJeu(String nomCarte){
-		for (ICarte carte : jeu) {
+		for (ICarte carte : this.jeu) {
 			if(carte.getNom().contains(nomCarte)){
 			    return carte;
 			}
@@ -204,7 +204,7 @@ public class Joueur implements IJoueur {
 	}
 
 	public ICarte getCarteEnMain(String nomCarteMain) {
-		for (ICarte carte : main) {
+		for (ICarte carte : this.main) {
 			if(carte.getNom().contains(nomCarteMain)){
 			    return carte;
 			}
@@ -215,6 +215,7 @@ public class Joueur implements IJoueur {
 	public void prendreTour() throws HearthstoneException {
 		if (this.getMana()<MAX_MANA)
 			this.mana += 1; 
+		this.getHeros().setPouvoirJouable(true);
 		this.stockMana = this.mana;
 		this.piocher();
 		for(ICarte carte :this.jeu) {
@@ -239,7 +240,7 @@ public class Joueur implements IJoueur {
 	
 	@Override
 	public void piocher() throws HearthstoneException {
-		if (this.jeu.size()!=0) {
+		if (!this.getDeck().isEmpty()) {
 			this.main.add(this.deck.get(0));
 			this.deck.remove(0);
 		}
@@ -259,13 +260,15 @@ public class Joueur implements IJoueur {
 			this.setMs(this.getStockMana()-carte.getCout());
 			
 			ICarte c;
-			c = null;
-			for( ICarte n:Plateau.getInstance().getAdversaire(this).getJeu()) {
-				if(n.disparait()) {
-					c=n;
+			
+			do {
+				c = null;
+				for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
+					if(card.disparait())
+						c=card;
+				if (c!=null)
 					Plateau.getInstance().getAdversaire(this).perdreCarte(c);
-				}
-			}
+			}while(c!=null);
 	}
 
 	
@@ -283,12 +286,15 @@ public class Joueur implements IJoueur {
 		this.setMs(this.getStockMana()-carte.getCout());
 		
 		ICarte c;
-		for( ICarte perte:Plateau.getInstance().getAdversaire(this).getJeu()) {
-			if(perte.disparait()) {
-				c=perte;
+		
+		do {
+			c = null;
+			for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
+				if(card.disparait())
+					c=card;
+			if (c!=null)
 				Plateau.getInstance().getAdversaire(this).perdreCarte(c);
-			}
-		}
+		}while(c!=null);
 	}
 
 	@Override

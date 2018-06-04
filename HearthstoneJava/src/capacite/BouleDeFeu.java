@@ -8,7 +8,7 @@ import jeu.Heros;
 public class BouleDeFeu extends Attaque {
 
 	public BouleDeFeu() {
-		super("Attaque ciblee", "Permet à la carte qui la possède d'attaquer une cible, soit le héros, soit l'un de ses serviteurs. Cette capacité est sensible à la provocation.", 1);
+		super("Attaque ciblee", "Inflige 1 point de degat à la cible", 1);
 	}
 	
 	@Override

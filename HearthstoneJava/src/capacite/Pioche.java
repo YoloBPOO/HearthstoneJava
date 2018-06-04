@@ -1,14 +1,14 @@
 package capacite;
 
 import jeu.HearthstoneException;
-import jeu.*;
+import carte.ICarte;
 
 public class Pioche extends Capacite {
 	
 	private int nbr;
 
 	public Pioche(int nb) {
-		super("Pioche", "Permet de piocher une ou plusieurs cartes.");
+		super("Pioche", "Pioche "+nb+" carte");
 		setNbr(nb);
 	}
 	
@@ -29,7 +29,7 @@ public class Pioche extends Capacite {
 	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
 		for(int i = 0; i < this.nbr; i++) {
-			((Joueur)cible).piocher();
+			((ICarte) cible).getProprietaire().piocher();
 		}
 	}
 

@@ -7,7 +7,7 @@ import jeu.Plateau;
 public class FlecheDuChasseur extends Attaque {
 
 	public FlecheDuChasseur() {
-		super("Attaque du Heros", "Permet à la carte qui la possède, d'attaquer le héros adverse, en toute circonstance, y compris lorsque le héros est protégé par la provocation.",2);
+		super("Attaque du Heros", "Inflige 2 points de degat au heros adverse",2);
 	}
 	
 	@Override

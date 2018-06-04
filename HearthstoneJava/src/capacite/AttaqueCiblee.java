@@ -13,7 +13,7 @@ import carte.*;
 public class AttaqueCiblee extends Attaque {
 
 	public AttaqueCiblee(int d) {
-		super("Attaque ciblee", "Permet à la carte qui la possède d'attaquer une cible, soit le héros, soit l'un de ses serviteurs. Cette capacité est sensible à la provocation.", d);
+		super("Attaque ciblee", "Inflige "+d+" points de degat à une cible", d);
 	}
 	
 	@Override

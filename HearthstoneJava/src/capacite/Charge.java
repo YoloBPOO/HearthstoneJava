@@ -6,7 +6,7 @@ import carte.*;
 public class Charge extends Capacite {
 
 	public Charge() {
-		super("Charge", "Permet à un serviteur de ne pas attendre le prochain tour avant d'attaquer.");
+		super("Charge", "Permet au serviteur cible d'attaquer pendant son tour de stase");
 	}
 	
 	public void executerEffetDebutTour() throws HearthstoneException {}

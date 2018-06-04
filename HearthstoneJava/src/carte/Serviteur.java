@@ -48,8 +48,8 @@ public class Serviteur extends Carte {
 	public String toString() {
 		String s = "Serviteur [" + super.toString() + " - Pdv : " + this.getPdv() + " - Att : " + this.getAtt();
 		if (this.getCapacite() != null)
-			s+= " Capacite " +this.getCapacite();
-		s+= "]";
+			s+= this.getCapacite();
+		s+= "]\n";
 		return s;
 	}
 	

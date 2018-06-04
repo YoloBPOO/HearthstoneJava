@@ -4,26 +4,16 @@ import capacite.*;
 import jeu.*;
 
 public class Sort extends Carte {
-	
-	private Capacite capacite;
 
-	public Sort(String n, int c, IJoueur p, Capacite capacite) {
+	public Sort(String n, int c, IJoueur p, ICapacite capacite) {
 		super(n, c, p, capacite);
-	}
-	
-	public void setCapacite(Capacite c) {
-		this.capacite=c;
-	}
-	
-	public Capacite getCapacite() {
-		return this.capacite;
 	}
 	
 	public String toString() {
 		String s="Sort [" + super.toString();
 		if (this.getCapacite() != null)
-			s+= " Capacite " +this.getCapacite();
-		s+= "]";
+			s+=this.getCapacite();
+		s+= "]\n";
 		return s;
 	}
 

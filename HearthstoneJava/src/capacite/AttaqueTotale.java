@@ -6,7 +6,7 @@ import carte.*;
 public class AttaqueTotale extends Attaque {
 
 	public AttaqueTotale(int d) {
-		super("Attaque totale", "Permet à la carte qui la possède d'attaquer simultanément tous les serviteurs adverses",d);
+		super("Attaque totale", "Inflige "+d+" points de degats à tous les serviteurs adverses",d);
 	}
 	
 	@Override

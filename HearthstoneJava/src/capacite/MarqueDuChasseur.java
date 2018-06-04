@@ -1,7 +1,6 @@
 package capacite;
 
 import jeu.HearthstoneException;
-import jeu.Heros;
 import carte.*;
 
 public class MarqueDuChasseur extends Attaque {
