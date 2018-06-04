@@ -9,7 +9,10 @@ public class Golemisation extends InvocationDeServiteurs {
 		super("Golemisation", "Invoque un golem endomage 2/1", new Serviteur("Golem endomagee", 1, joueur, 2, 1, null), 1);
 	}
 	
-		public void executerEffetDisparition(Object cible) throws HearthstoneException {
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 			super.executerAction(cible);
+	}
+	
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 	}
 }

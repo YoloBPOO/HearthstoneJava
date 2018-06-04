@@ -46,9 +46,11 @@ public class Serviteur extends Carte {
 	}
 	
 	public String toString() {
-		String s = "Serviteur [" + super.toString() + " - Pdv : " + this.getPdv() + " - Att : " + this.getAtt();
+		String s = "Serviteur [" + super.toString() + " || PDV : " + this.getPdv() + " || ATT : " + this.getAtt();
 		if (this.getCapacite() != null)
 			s+= this.getCapacite();
+		if (getJouable())
+			s+= " Peut attaquer";
 		s+= "]\n";
 		return s;
 	}

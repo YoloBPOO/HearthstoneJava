@@ -11,7 +11,6 @@ public class application {
 	private static String pseudoJ2;
 	private static String choix, choix2;
 	private static Scanner sc = new Scanner(System.in);
-	private static int i;
 	private static char carac;
 	private static Joueur joueur1;
 	private static Joueur joueur2;
@@ -44,9 +43,6 @@ public class application {
 	}
 	
 	public static void board() throws HearthstoneException {
-		
-		ArrayList<ICarte> joueurCourant=Plateau.getInstance().getJoueurCourant().getJeu();
-		ArrayList<ICarte> joueurAdverse=Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu();
 				
 		System.out.println("_______________________________________________________");
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getPseudo()+"  [Point de vie: " +Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getStockMana()+"/"+Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getMana()+ "]");
@@ -66,93 +62,105 @@ public class application {
 	}
 	
 	private static void jouerCarte() throws HearthstoneException {
-		System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
-		choix=sc.nextLine();
-		
-		Carte c= (Carte) Plateau.getInstance().getJoueurCourant().getCarteEnMain(choix);
-		
-		System.out.println(c);
-		if (c!=null) {
-			if (c.getCapacite() instanceof AttaqueCiblee) {
-				do{
-					System.out.println("Voulez-Vous cibler :\n 1 -> Un heros \n 2 1-> Une carte");
-					choix=sc.nextLine();
-					carac = choix.charAt(0);		
-				}while(carac!='1' && carac!='2');
-				
-				if (carac=='2') {
-					System.out.println("Tapez les 5 premieres lettres de la cible");
-					choix2=sc.nextLine();
+		try {
+			System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
+			choix=sc.nextLine();
+			
+			Carte c= (Carte) Plateau.getInstance().getJoueurCourant().getCarteEnMain(choix);
+			
+			System.out.println(c);
+			if (c!=null) {
+				if (c.getCapacite() instanceof AttaqueCiblee) {
+					do{
+						System.out.println("Voulez-Vous cibler :\n1 -> Un heros \n2 -> Une carte");
+						choix=sc.nextLine();
+						carac = choix.charAt(0);		
+					}while(carac!='1' && carac!='2');
 					
-					ICarte cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getCarteEnJeu(choix2);
-					Plateau.getInstance().getJoueurCourant().jouerCarte(c,cible);
+					if (carac=='2') {
+						System.out.println("Tapez les 5 premieres lettres de la cible");
+						choix2=sc.nextLine();
+						
+						ICarte cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getCarteEnJeu(choix2);
+						Plateau.getInstance().getJoueurCourant().jouerCarte(c,cible);
+					}
+					else {
+						Heros cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getHeros();
+						Plateau.getInstance().getJoueurCourant().jouerCarte(c,cible);
+						if (cible.getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
+					}
 				}
-				else {
-					Heros cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getHeros();
-					Plateau.getInstance().getJoueurCourant().jouerCarte(c,cible);
-					if (cible.getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
+				else 
+					Plateau.getInstance().getJoueurCourant().jouerCarte(c);
+				if (c.getCapacite() instanceof AttaqueDuHeros) {
+					Plateau.getInstance().getJoueurCourant().jouerCarte(c);
+					IJoueur adversaire = Plateau.getInstance().getAdversaire(c.getProprietaire());
+					if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
 				}
 			}
 			else 
-				Plateau.getInstance().getJoueurCourant().jouerCarte(c);
-			if (c.getCapacite() instanceof AttaqueDuHeros) {
-				Plateau.getInstance().getJoueurCourant().jouerCarte(c);
-				IJoueur adversaire = Plateau.getInstance().getAdversaire(c.getProprietaire());
-				if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
-			}
+				System.out.println("Vous n'avez pas cette carte en main");
+		}catch (HearthstoneException e) {
+			System.out.println("Vous ne pouvez pas faire ça.");
 		}
-		else 
-			System.out.println("Vous n'avez pas cette carte en main");
 	}
 	
 	private static void utiliserCarte() throws HearthstoneException {
-		System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
-		choix=sc.nextLine();
-		
-		ICarte c= Plateau.getInstance().getJoueurCourant().getCarteEnJeu(choix);
-		
-		if (c!=null) {
-			do{
-				System.out.println("Voulez-Vous cibler :\n 1 -> Un heros \\n 2 1-> Une carte");
-				choix=sc.nextLine();
-				carac = choix.charAt(0);
-			}while(carac!='1' && carac!='2');
-			if (carac=='2') {
-				System.out.println("Tapez les 5 premieres lettres de la cible");
-				choix2=sc.nextLine();
-				ICarte cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getCarteEnJeu(choix2);
-				Plateau.getInstance().getJoueurCourant().utiliserCarte(c,cible);
+		try {
+			System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
+			choix=sc.nextLine();
+			
+			ICarte c= Plateau.getInstance().getJoueurCourant().getCarteEnJeu(choix);
+			
+			if (c!=null) {
+				do{
+					System.out.println("Voulez-Vous cibler :\n 1 -> Un heros \n2 -> Une carte");
+					choix=sc.nextLine();
+					carac = choix.charAt(0);
+				}while(carac!='1' && carac!='2');
+				if (carac=='2') {
+					System.out.println("Tapez les 5 premieres lettres de la cible");
+					choix2=sc.nextLine();
+					ICarte cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getCarteEnJeu(choix2);
+					Plateau.getInstance().getJoueurCourant().utiliserCarte(c,cible);
+				}
+				else {
+					Heros cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getHeros();
+					Plateau.getInstance().getJoueurCourant().utiliserCarte(c,cible);
+					if (cible.getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
+				}
 			}
-			else {
-				Heros cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getHeros();
-				Plateau.getInstance().getJoueurCourant().utiliserCarte(c,cible);
-				if (cible.getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
-			}
+			else System.out.println("Cette carte n'est pas sur le plateau");
+		}catch (HearthstoneException e) {
+			System.out.println("Vous ne pouvez pas faire ça.");
 		}
-		else System.out.println("Cette carte n'est pas sur le plateau");
 	}
 	
 	private static void pouvoirHeroique() throws HearthstoneException {
-		IJoueur adversaire = Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant());
-		if (Plateau.getInstance().getJoueurCourant().getHeros().getCapacite().getNom().contains("tir assure")){
-			Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getHeros());
-		}
-		else {
-			do {
-				System.out.println("Voulez-Vous cibler :\n1 -> Un heros \n 2 -> Une carte");
-				choix=sc.nextLine();
-				carac = choix.charAt(0);
-			}while(carac!='1' && carac!='2');
-			if (carac=='1') {
+		try {
+			IJoueur adversaire = Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant());
+			if (Plateau.getInstance().getJoueurCourant().getHeros().getCapacite().getNom().contains("tir assure")){
 				Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getHeros());
-				if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(Plateau.getInstance().getJoueurCourant());
 			}
 			else {
-				System.out.println("Tapez les 5 premieres lettres de la cible");
-				choix=sc.nextLine();
-				Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getCarteEnJeu(choix));
+				do {
+					System.out.println("Voulez-Vous cibler :\n1 -> Un heros \n2 -> Une carte");
+					choix=sc.nextLine();
+					carac = choix.charAt(0);
+				}while(carac!='1' && carac!='2');
+				if (carac=='1') {
+					Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getHeros());
+					if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(Plateau.getInstance().getJoueurCourant());
+				}
+				else {
+					System.out.println("Tapez les 5 premieres lettres de la cible");
+					choix=sc.nextLine();
+					Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getCarteEnJeu(choix));
+				}
 			}
-		}
+	}catch (HearthstoneException e) {
+		System.out.println("Vous ne pouvez pas faire ça.");
+	}
 	}
 	
 	private static void finirLeTour() throws HearthstoneException {

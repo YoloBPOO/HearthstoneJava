@@ -299,53 +299,76 @@ public class Joueur implements IJoueur {
 
 	@Override
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
-		if ( !((Serviteur) carte).getJouable()) 
-			throw new HearthstoneException("Cette carte ne peut pas jouer");
-		if (cible instanceof Heros) {
-			if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
-			else {
+		try {
+			if ( !((Serviteur) carte).getJouable()) 
+				throw new HearthstoneException("Cette carte ne peut pas jouer");
+		} catch (HearthstoneException e) {
+			System.out.println("Cette carte ne peut pas encore jouer");
+		}
+		try {
+			if (cible instanceof Heros) {
+				if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) 
+					throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
+				else {
 				((Heros)cible).setPdv(((Heros) cible).getPdv()-((Serviteur )carte).getAtt());
 				((Serviteur)carte).setJouable(false);
+				}
 			}
-		}
-		if (cible instanceof Serviteur) {
-			if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) {
-				if (!(((Serviteur)cible).getCapacite() instanceof Provocation)) 
-					throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
-				else  if (((Serviteur)carte).getJouable()){
+			if (cible instanceof Serviteur) {
+				if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) {
+					if (!(((Serviteur)cible).getCapacite() instanceof Provocation)) 
+						throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
+					else  if (((Serviteur)carte).getJouable()){
+						((Serviteur)cible).setPdv(((Serviteur) cible).getPdv()-((Serviteur)carte).getAtt());
+						((Serviteur)carte).setPdv(((Serviteur) carte).getPdv()-((Serviteur)cible).getAtt());
+						((Serviteur)carte).getJouable();
+					}
+				}
+				else {
 					((Serviteur)cible).setPdv(((Serviteur) cible).getPdv()-((Serviteur)carte).getAtt());
 					((Serviteur)carte).setPdv(((Serviteur) carte).getPdv()-((Serviteur)cible).getAtt());
 					((Serviteur)carte).getJouable();
 				}
+				
+				ICarte d = null, b = null;
+				for( ICarte card:this.getJeu()) 
+					if(carte.disparait())
+						d=card;
+				for( ICarte card:Plateau.getInstance().getAdversaire(this).getJeu()) 
+					if(card.disparait())
+						b=card;
+				if (d!=null)
+				this.perdreCarte(d);
+				if (b!=null)
+					Plateau.getInstance().getAdversaire(this).perdreCarte(b);
 			}
-			else {
-				((Serviteur)cible).setPdv(((Serviteur) cible).getPdv()-((Serviteur)carte).getAtt());
-				((Serviteur)carte).setPdv(((Serviteur) carte).getPdv()-((Serviteur)cible).getAtt());
-				((Serviteur)carte).getJouable();
-			}
-			
-			ICarte c;
-			for( ICarte perte:Plateau.getInstance().getAdversaire(this).getJeu()) {
-				if(perte.disparait()) {
-					c=perte;
-					Plateau.getInstance().getAdversaire(this).perdreCarte(c);
-				}
-			}
-			c=null;
-			for( ICarte perte:this.getJeu()) {
-				if(perte.disparait()) {
-					c=perte;
-					this.perdreCarte(c);
-				}
-			}
+		} catch (HearthstoneException e) {
+			System.out.println("Vous pouvez seulement attaquer le serviteur avec provocation !");
 		}
 	}
 
 	@Override
 	public void utiliserPouvoir(Object cible) throws HearthstoneException {
-		if (this.heros.getPouvoirJouable()) {
-			heros.getCapacite().executerAction(cible);
-			heros.setPouvoirJouable(false);
+		try {
+			if (this.heros.getPouvoirJouable()) {
+				try {
+					if (getStockMana() >= 2) {
+						heros.getCapacite().executerAction(cible);
+						heros.setPouvoirJouable(false);
+						setMs(getStockMana() - 2);
+					}
+					else {
+						throw new HearthstoneException ("Pas assez de mana");
+					}	
+				} catch (HearthstoneException e) {
+					System.out.println("Pas assez de mana !");
+				}	
+			 }
+		else {
+			throw new HearthstoneException ("Vous avez deja utiliser votre pouvoir");
+		}
+		} catch (HearthstoneException e) {
+			System.out.println("Vous avez deja utiliser votre pouvoir !");
 		}
 	}
 
