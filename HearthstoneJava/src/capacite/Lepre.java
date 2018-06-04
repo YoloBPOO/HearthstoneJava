@@ -2,10 +2,9 @@ package capacite;
 
 import jeu.*;
 
-public class AttaqueDuHeros extends Attaque {
-
-	public AttaqueDuHeros(int d) {
-		super("Attaque du Heros", "Permet à la carte qui la possède, d'attaquer le héros adverse, en toute circonstance, y compris lorsque le héros est protégé par la provocation.",d);
+public class Lepre extends Attaque {
+	public Lepre() {
+		super("Rale d'agonie", "Inflige 2 points de degat au heros adverse", 2);
 	}
 	
 	@Override

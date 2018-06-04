@@ -1,28 +1,35 @@
 package capacite;
 
 import jeu.HearthstoneException;
+import jeu.Heros;
 import carte.*;
 
-public class MarqueDuChasseur extends Capacite {
+public class MarqueDuChasseur extends Attaque {
 
-	public MarqueDuChasseur(String n, String d) {
-		super("Marque du chasseur", "vise un serviteur et réduit à 1 son nombre de points de vie (quel que soit le nombre de points de vie qu'il avait au départ).");
-	}
+		public MarqueDuChasseur(int d) {
+			super("Marque du Chasseur", "Modifie le spoints de vie du serviteur cible a 1", 0);
+		}
+		
+		@Override
+		public void executerEffetDebutTour() throws HearthstoneException {}
+
+		@Override
+		public void executerEffetFinTour() throws HearthstoneException {}
+
+		@Override
+		public void executerAction(Object cible) throws HearthstoneException {
+			if(cible instanceof Serviteur)
+				((Serviteur) cible).setPdv(1);
+			else
+				throw new HearthstoneException("La cible n'est pas un serviteur");
+		}
 	
-	@Override
-	public void executerEffetDebutTour() throws HearthstoneException {}
+		@Override
+		public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
+			this.executerAction(cible);
+		}
 
-	@Override
-	public void executerEffetFinTour() throws HearthstoneException {}
-
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
-		((Serviteur)cible).setPdv(1);
+		@Override
+		public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 	}
 
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
-
-	@Override
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
-}

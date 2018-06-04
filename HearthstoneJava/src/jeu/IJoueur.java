@@ -18,7 +18,7 @@ public interface IJoueur {
          * Le nombre max de cartes qui peuvent composer un deck. 
          */
         public final static int TAILLE_DECK = 15;       // Nombre max de cartes dans le deck
-
+    	public final static int MAX_PLATEAU=7;
         /**
          * @return C'est le héros choisi par le joueur
          */

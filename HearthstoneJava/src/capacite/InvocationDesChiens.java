@@ -1,14 +1,13 @@
 package capacite;
 
-import carte.Serviteur;
-import jeu.HearthstoneException;
-import jeu.Joueur;
+import carte.*;
+import jeu.*;
 
-public class InvocationDesChiens extends Capacite {
+public class InvocationDesChiens extends InvocationDeServiteurs {
 
-	public InvocationDesChiens() {
-		super("Invocation des chiens", "Lorsqu'une carte possédant cette capacité est mise en jeu, des serviteurs chiens sont créés. Il y a autant de chiens que le joueur adverse a de serviteurs. Un chien est un serviteur +1/+1 avec \"Charge\".");
-	}
+	public InvocationDesChiens(IJoueur joueur) throws HearthstoneException{
+		super("Lacher les chiens", "Invoque un chien 1/1 avec la capacite charge pour chaque serviteur sur le terrain adverse", new Serviteur("Chien", 1, joueur, 1, 1, new Charge()), 0);
+}
 	
 	@Override
 	public void executerEffetDebutTour() throws HearthstoneException {}
@@ -21,8 +20,8 @@ public class InvocationDesChiens extends Capacite {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		Charge c = new Charge();
-		Serviteur s = new Serviteur("Chien",0,((Joueur)cible),1,1,c);
+		this.setNb( Plateau.getInstance().getAdversaire(((ICarte)cible).getProprietaire()).getJeu().size());
+		super.executerAction(cible);
 	}
 
 	@Override

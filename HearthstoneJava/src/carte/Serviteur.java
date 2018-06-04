@@ -1,6 +1,6 @@
 package carte;
 
-import jeu.IJoueur;
+import jeu.*;
 import capacite.*;
 
 public class Serviteur extends Carte {
@@ -16,6 +16,13 @@ public class Serviteur extends Carte {
 		this.setJouable(false);
 		this.setCapacite(capacite);
 	}
+	
+	public Serviteur(Serviteur serv)throws HearthstoneException {
+		super(serv.getNom(), serv.getCout(), serv.getProprietaire());
+		setCapacite(serv.getCapacite());
+		setAtt(serv.getPdv());
+		setPdv(serv.getPdv());
+}
 	
 	public void setPdv(int p) {
 		this.pdv=p;

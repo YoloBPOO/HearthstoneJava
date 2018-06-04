@@ -19,8 +19,7 @@ import carte.Sort;
 
 public class Joueur implements IJoueur {
 	
-	// Attributs
-	
+	// Attributs	
 	private Heros hero;
 	private String pseudo;
 	private int mana;
@@ -118,7 +117,7 @@ public class Joueur implements IJoueur {
 		Sort ch = new Sort("Charge", 1, null, c);
 		deck.add(ch);
 		
-		AttaqueCiblee ac = new AttaqueCiblee();
+		AttaqueCiblee ac = new AttaqueCiblee(2);
 		Sort attm = new Sort("Attaque mentale", 2, null, ac);
 		deck.add(attm);
 		

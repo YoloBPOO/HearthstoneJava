@@ -1,6 +1,7 @@
 package jeu;
 
 public class Plateau implements IPlateau {
+	private static IPlateau inPlateau = null;
 
 	@Override
 	public void ajouterJoueur(IJoueur joueur) throws HearthstoneException {
@@ -49,5 +50,11 @@ public class Plateau implements IPlateau {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public static IPlateau getInstance() {
+		if(inPlateau==null)
+		inPlateau = new Plateau();
+		return inPlateau;
+}
 
 }

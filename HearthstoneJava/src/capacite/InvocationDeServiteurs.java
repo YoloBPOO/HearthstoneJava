@@ -1,34 +1,33 @@
 package capacite;
 
-import jeu.HearthstoneException;
-import carte.*;
 import jeu.*;
+import carte.*;
 
 public class InvocationDeServiteurs extends Capacite {
 	
-	private int att, pdv;
+	private int nb;
+	private Serviteur serviteur;
 
-	public InvocationDeServiteurs(int att,int pdv) {
-		super("Invocation de serviteurs", "Crée automatiquement, au moment de sa mise en jeu, un nouveau serviteur.");
-		this.setAtt(att);
-		this.setPdv(pdv);
-		
+	public InvocationDeServiteurs(String n, String d ,Serviteur serv, int nb) {
+		super(n, d);
+		this.setServ(serv);
+		this.setNb(nb);
 	}
 	
-	public void setPdv(int p) {
-		this.pdv=p;
+	public void setServ(Serviteur serv) {
+		this.serviteur=serv;
 	}
 	
-	public void setAtt(int a) {
-		this.att=a;
+	public void setNb(int n) {
+		this.nb=n;
 	}
 	
-	public int getPdv() {
-		return this.pdv;
+	public Serviteur getServ() {
+		return this.serviteur;
 	}
 	
-	public int getAtt() {
-		return this.att;
+	public int getNb() {
+		return this.nb;
 	}
 	
 	@Override
@@ -38,11 +37,24 @@ public class InvocationDeServiteurs extends Capacite {
 	public void executerEffetFinTour() throws HearthstoneException {}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {}
+	public void executerAction(Object cible) throws HearthstoneException {
+		int nb;
+		IJoueur joue=Plateau.getInstance().getJoueurCourant();
+		if (joue.getJeu().size()+getNb() > IJoueur.MAX_PLATEAU){
+			nb= IJoueur.MAX_PLATEAU-joue.getJeu().size();
+		}
+		else {
+			nb= getNb();;
+		}
+		
+		for(int k=0; k<nb; k++) {
+			joue.getJeu().add(new Serviteur(this.getServ()));
+		}
+	}
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		Serviteur s = new Serviteur("Invocation",0,((Joueur)cible),this.getPdv(),this.getAtt(),null);
+		this.executerAction(cible);
 	}
 
 	@Override

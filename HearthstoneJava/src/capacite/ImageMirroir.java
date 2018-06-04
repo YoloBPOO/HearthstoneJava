@@ -1,15 +1,13 @@
 package capacite;
 
 import carte.Serviteur;
-import jeu.HearthstoneException;
-import jeu.Joueur;
+import jeu.*;
 
-public class ImageMirroir extends Capacite {
+public class ImageMirroir extends InvocationDeServiteurs {
 
-	public ImageMirroir(String n, String d) {
-		super("Image mirroir", "La carte possédant cette capacité invoque automatiquement, au début du tour, deux serviteurs 0/+2 avec la capacité \"Provocation\".");
+	public ImageMirroir(IJoueur joueur) {
+		super("Image Miroir", "Invoque 2 serviteurs 0/2 avec la capacite Provocation", new Serviteur("Image Remanente", 0, joueur, 2, 0, new Provocation()), 2);
 	}
-	
 	@Override
 	public void executerEffetDebutTour() throws HearthstoneException {}
 
@@ -21,8 +19,7 @@ public class ImageMirroir extends Capacite {
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		Provocation p = new Provocation();
-		Serviteur s = new Serviteur("Image",0,((Joueur)cible),2,0,p);
+		super.executerAction(cible);
 	}
 
 	@Override

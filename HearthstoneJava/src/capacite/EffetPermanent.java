@@ -45,5 +45,8 @@ public class EffetPermanent extends Capacite {
 	}
 
 	@Override
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {
+		((Serviteur)cible).setPdv(((Serviteur)cible).getPdv()-this.getBoostPdv());
+		((Serviteur)cible).setAtt(((Serviteur)cible).getAtt()-this.getBoostAtt());
+	}
 }

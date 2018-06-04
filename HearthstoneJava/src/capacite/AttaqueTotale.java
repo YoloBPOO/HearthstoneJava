@@ -1,11 +1,12 @@
 package capacite;
 
-import jeu.HearthstoneException;
+import jeu.*;
+import carte.*;
 
-public class AttaqueTotale extends Capacite {
+public class AttaqueTotale extends Attaque {
 
-	public AttaqueTotale() {
-		super("Attaque totale", "Permet à la carte qui la possède d'attaquer simultanément tous les serviteurs adverses");
+	public AttaqueTotale(int d) {
+		super("Attaque totale", "Permet à la carte qui la possède d'attaquer simultanément tous les serviteurs adverses",d);
 	}
 	
 	@Override
@@ -15,7 +16,15 @@ public class AttaqueTotale extends Capacite {
 	public void executerEffetFinTour() throws HearthstoneException {}
 
 	@Override
-	public void executerAction(Object cible) throws HearthstoneException {}
+	public void executerAction(Object cible) throws HearthstoneException {
+		cible=((ICarte) cible).getProprietaire();
+		if(cible instanceof IJoueur) {
+			for(ICarte carte : Plateau.getInstance().getAdversaire((IJoueur) cible).getJeu())
+				((Serviteur) carte).setPdv(((Serviteur) carte).getPdv() - getDegat());
+		}
+		else 
+			throw new HearthstoneException("Aucune cible");
+	}
 
 	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
