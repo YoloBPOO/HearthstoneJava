@@ -9,6 +9,7 @@ public class Heros {
 	private String nom;
 	private int pdv;
 	private Capacite pouvoir;
+	private boolean pouvoirJouable;
 	
 	// Constructeur
 	
@@ -32,6 +33,9 @@ public class Heros {
 		this.pouvoir=p;
 	}
 	
+	public void setPouvoirJouable(boolean b) {
+		this.pouvoirJouable=b;
+	}
 	// Getters
 	
 	public String getNom() {
@@ -44,6 +48,10 @@ public class Heros {
 	
 	public Capacite getCapacite() {
 		return pouvoir;
+	}
+	
+	public boolean getPouvoirJouable() {
+		return pouvoirJouable;
 	}
 	
 	public String toString() {

@@ -9,7 +9,7 @@ import carte.*;
 public class Joueur implements IJoueur {
 	
 	// Attributs	
-	private Heros hero;
+	private Heros heros;
 	private String pseudo;
 	private int mana;
 	private int stockMana;
@@ -41,7 +41,7 @@ public class Joueur implements IJoueur {
 	}
 
 	public void setHeros(Heros h) {
-		this.hero=h;
+		this.heros=h;
 	}
 
 	
@@ -49,7 +49,7 @@ public class Joueur implements IJoueur {
 	
 	
 	public Heros getHeros() {
-		return hero;
+		return heros;
 	}
 
 	public String getPseudo() {
@@ -249,6 +249,15 @@ public class Joueur implements IJoueur {
 			}
 			carte.executerEffetDebutMiseEnJeu(carte);
 			this.setMs(this.getStockMana()-carte.getCout());
+			
+			ICarte c;
+			c = null;
+			for( ICarte n:Plateau.getInstance().getAdversaire(this).getJeu()) {
+				if(n.disparait()) {
+					c=n;
+					Plateau.getInstance().getAdversaire(this).perdreCarte(c);
+				}
+			}
 	}
 
 	
@@ -264,24 +273,80 @@ public class Joueur implements IJoueur {
 		}
 		carte.executerEffetDebutMiseEnJeu(cible);
 		this.setMs(this.getStockMana()-carte.getCout());
+		
+		ICarte c;
+		for( ICarte perte:Plateau.getInstance().getAdversaire(this).getJeu()) {
+			if(perte.disparait()) {
+				c=perte;
+				Plateau.getInstance().getAdversaire(this).perdreCarte(c);
+			}
+		}
 	}
 
 	@Override
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		if ( !((Serviteur) carte).getJouable()) 
+			throw new HearthstoneException("Cette carte ne peut pas jouer");
+		if (cible instanceof Heros) {
+			if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
+			else {
+				((Heros)cible).setPdv(((Heros) cible).getPdv()-((Serviteur )carte).getAtt());
+				((Serviteur)carte).setJouable(false);
+			}
+		}
+		if (cible instanceof Serviteur) {
+			if (((Joueur)Plateau.getInstance().getAdversaire(this)).ProvocationEnJeu()) {
+				if (!(((Serviteur)cible).getCapacite() instanceof Provocation)) 
+					throw new HearthstoneException("Vous pouvez seulement attaquer le serviteur avec provocation");
+				else  if (((Serviteur)carte).getJouable()){
+					((Serviteur)cible).setPdv(((Serviteur) cible).getPdv()-((Serviteur)carte).getAtt());
+					((Serviteur)carte).setPdv(((Serviteur) carte).getPdv()-((Serviteur)cible).getAtt());
+					((Serviteur)carte).getJouable();
+				}
+			}
+			else {
+				((Serviteur)cible).setPdv(((Serviteur) cible).getPdv()-((Serviteur)carte).getAtt());
+				((Serviteur)carte).setPdv(((Serviteur) carte).getPdv()-((Serviteur)cible).getAtt());
+				((Serviteur)carte).getJouable();
+			}
+			
+			ICarte c;
+			for( ICarte perte:Plateau.getInstance().getAdversaire(this).getJeu()) {
+				if(perte.disparait()) {
+					c=perte;
+					Plateau.getInstance().getAdversaire(this).perdreCarte(c);
+				}
+			}
+			c=null;
+			for( ICarte perte:this.getJeu()) {
+				if(perte.disparait()) {
+					c=perte;
+					this.perdreCarte(c);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void utiliserPouvoir(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		if (this.heros.getPouvoirJouable()) {
+			heros.getCapacite().executerAction(cible);
+			heros.setPouvoirJouable(false);
+		}
 	}
 
 	@Override
 	public void perdreCarte(ICarte carte) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+		this.jeu.remove(carte);
+		carte.executerEffetDisparition(carte);
+	}
+	
+	public boolean ProvocationEnJeu() {
+		for (ICarte carte : this.getJeu()) {
+            if (((Serviteur) carte).getCapacite() instanceof Provocation) 
+            	return true;
+        }
+		return false;
 	}
 
 }

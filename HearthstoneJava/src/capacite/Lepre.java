@@ -23,5 +23,7 @@ public class Lepre extends Attaque {
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
 
 	@Override
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {
+		this.executerAction(cible);
+	}
 }
