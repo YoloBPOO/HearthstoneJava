@@ -48,11 +48,11 @@ public class application {
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getPseudo()+"  [Point de vie: " +Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getStockMana()+"/"+Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getMana()+ "]");
 		System.out.println("\n");
 		System.out.println("_______________________________________________________");
-		System.out.println("==========================================================");
+		System.out.println("=======================================================");
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu());
 		System.out.println("----------------------------------------------------------");
 		System.out.println(Plateau.getInstance().getJoueurCourant().getJeu());
-		System.out.println("==========================================================");
+		System.out.println("=======================================================");
 		System.out.println("_______________________________________________________");
 		System.out.println("\n");
 		System.out.println(Plateau.getInstance().getJoueurCourant().getPseudo() +"  [Point de vie: " +Plateau.getInstance().getJoueurCourant().getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getJoueurCourant().getStockMana()+"/"+Plateau.getInstance().getJoueurCourant().getMana()+ "]");
@@ -62,7 +62,6 @@ public class application {
 	}
 	
 	private static void jouerCarte() throws HearthstoneException {
-		try {
 			System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
 			choix=sc.nextLine();
 			
@@ -100,13 +99,9 @@ public class application {
 			}
 			else 
 				System.out.println("Vous n'avez pas cette carte en main");
-		}catch (HearthstoneException e) {
-			System.out.println("Vous ne pouvez pas faire ça.");
-		}
 	}
 	
 	private static void utiliserCarte() throws HearthstoneException {
-		try {
 			System.out.println("Tapez les 5 premieres lettres de la carte que vous voullez jouer");
 			choix=sc.nextLine();
 			
@@ -114,7 +109,7 @@ public class application {
 			
 			if (c!=null) {
 				do{
-					System.out.println("Voulez-Vous cibler :\n 1 -> Un heros \n2 -> Une carte");
+					System.out.println("Voulez-Vous cibler :\n1 -> Un heros \n2 -> Une carte");
 					choix=sc.nextLine();
 					carac = choix.charAt(0);
 				}while(carac!='1' && carac!='2');
@@ -131,13 +126,9 @@ public class application {
 				}
 			}
 			else System.out.println("Cette carte n'est pas sur le plateau");
-		}catch (HearthstoneException e) {
-			System.out.println("Vous ne pouvez pas faire ça.");
-		}
 	}
 	
 	private static void pouvoirHeroique() throws HearthstoneException {
-		try {
 			IJoueur adversaire = Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant());
 			if (Plateau.getInstance().getJoueurCourant().getHeros().getCapacite().getNom().contains("tir assure")){
 				Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getHeros());
@@ -158,9 +149,6 @@ public class application {
 					Plateau.getInstance().getJoueurCourant().utiliserPouvoir(adversaire.getCarteEnJeu(choix));
 				}
 			}
-	}catch (HearthstoneException e) {
-		System.out.println("Vous ne pouvez pas faire ça.");
-	}
 	}
 	
 	private static void finirLeTour() throws HearthstoneException {

@@ -248,53 +248,77 @@ public class Joueur implements IJoueur {
 
 	@Override
 	public void jouerCarte(ICarte carte) throws HearthstoneException {
+		try {
 			if (carte.getCout() > this.getStockMana())
 				throw new HearthstoneException("Mana insuffisant");
-			this.getMain().remove(carte);
-			if(carte instanceof Serviteur) {
-				if (this.jeu.size()>=MAX_PLATEAU)
-					throw new HearthstoneException("Plateau plein");
-				this.jeu.add(carte);
-			}
-			carte.executerEffetDebutMiseEnJeu(carte);
-			this.setMs(this.getStockMana()-carte.getCout());
-			
-			ICarte c;
-			
-			do {
-				c = null;
-				for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
-					if(card.disparait())
-						c=card;
-				if (c!=null)
-					Plateau.getInstance().getAdversaire(this).perdreCarte(c);
-			}while(c!=null);
+			else {
+				this.getMain().remove(carte);
+				
+				try {
+					if(carte instanceof Serviteur) {
+						if (this.jeu.size()>=MAX_PLATEAU)
+							throw new HearthstoneException("Plateau plein");
+						this.jeu.add(carte);
+					}
+				} catch (HearthstoneException e) {
+					System.out.println("Le plateau est plein, impossible de poser plus de serviteurs");
+				}
+				
+					carte.executerEffetDebutMiseEnJeu(carte);
+					this.setMs(this.getStockMana()-carte.getCout());
+					
+					ICarte c;
+					
+					do {
+						c = null;
+						for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
+							if(card.disparait())
+								c=card;
+						if (c!=null)
+							Plateau.getInstance().getAdversaire(this).perdreCarte(c);
+					}while(c!=null);
+			}		
+		} catch (HearthstoneException e) {
+			System.out.println("Vous n'avez pas assez de mana");
+		}
 	}
 
 	
 	@Override
 	public void jouerCarte(ICarte carte, Object cible) throws HearthstoneException {
-		if (carte.getCout() > this.getStockMana())
-			throw new HearthstoneException("Mana insuffisant");
-		this.getMain().remove(carte);
-		if(carte instanceof Serviteur) {
-			if (this.jeu.size()>=MAX_PLATEAU)
-				throw new HearthstoneException("Plateau plein");
-			this.jeu.add(carte);
+		try {
+			if (carte.getCout() > this.getStockMana())
+				throw new HearthstoneException("Mana insuffisant");
+			else {
+				this.getMain().remove(carte);
+				
+				try {
+					if(carte instanceof Serviteur) {
+						if (this.jeu.size()>=MAX_PLATEAU)
+							throw new HearthstoneException("Plateau plein");
+						this.jeu.add(carte);
+					}
+				} catch (HearthstoneException e) {
+					System.out.println("Le plateau est plein, impossible de poser plus de serviteurs");
+				}
+				
+				carte.executerEffetDebutMiseEnJeu(cible);
+				this.setMs(this.getStockMana()-carte.getCout());
+				
+				ICarte c;
+				
+				do {
+					c = null;
+					for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
+						if(card.disparait())
+							c=card;
+					if (c!=null)
+						Plateau.getInstance().getAdversaire(this).perdreCarte(c);
+				}while(c!=null);
+			}
+		} catch (HearthstoneException e) {
+			System.out.println("Vous n'avez pas assez de mana");
 		}
-		carte.executerEffetDebutMiseEnJeu(cible);
-		this.setMs(this.getStockMana()-carte.getCout());
-		
-		ICarte c;
-		
-		do {
-			c = null;
-			for( ICarte card :Plateau.getInstance().getAdversaire(this).getJeu())
-				if(card.disparait())
-					c=card;
-			if (c!=null)
-				Plateau.getInstance().getAdversaire(this).perdreCarte(c);
-		}while(c!=null);
 	}
 
 	@Override
