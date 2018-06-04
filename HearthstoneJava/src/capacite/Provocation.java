@@ -5,7 +5,7 @@ import jeu.HearthstoneException;
 public class Provocation extends Capacite {
 
 	public Provocation() {
-		super("Provocation", "Le héros ne peut pas être victime d'une attaque tant que l'un de ses serviteurs ayant la provocation est présent sur le plateau.");
+		super("Provocation", "Oblige les serviteurs a l'attaquer");
 	}
 
 	@Override

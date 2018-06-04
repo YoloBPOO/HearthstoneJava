@@ -17,7 +17,7 @@ public class application {
 	private static Joueur joueur2;
 	
 	private static void jouer() throws HearthstoneException {
-			System.out.println("Que voulez-vous faire? \n 1 -> Jouer une carte \n 2 -> Utiliser un serviteur sur le terrain \n 3 -> Utiliser votre pouvoir heroique \n 4 -> Passer votre tour \n");
+			System.out.println("Que voulez-vous faire? \n 1 -> Jouer une carte \n 2 -> Utiliser un serviteur sur le terrain \n 3 -> Utiliser votre pouvoir heroique \n 4 -> Finir votre tour \n");
 			do {
 			choix = sc.nextLine();
 			carac = choix.charAt(0);
@@ -35,7 +35,7 @@ public class application {
 				pouvoirHeroique();
 			    break;
 			  case '4':
-				passerLeTour();
+				finirLeTour();
 				break;
 			  default:
 			  	throw new HearthstoneException("Choisissez entre 1, 2, 3, 4");
@@ -49,7 +49,7 @@ public class application {
 		ArrayList<ICarte> joueurAdverse=Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu();
 				
 		System.out.println("_______________________________________________________");
-		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getPseudo());
+		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getPseudo()+"  [Point de vie: " +Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getStockMana()+"/"+Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getMana()+ "]");
 		System.out.println("\n");
 		System.out.println("_______________________________________________________");
 		System.out.println("==========================================================");
@@ -101,6 +101,8 @@ public class application {
 				if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
 			}
 		}
+		else 
+			System.out.println("Vous n'avez pas cette carte en main");
 	}
 	
 	private static void utiliserCarte() throws HearthstoneException {
@@ -153,7 +155,7 @@ public class application {
 		}
 	}
 	
-	private static void passerLeTour() throws HearthstoneException {
+	private static void finirLeTour() throws HearthstoneException {
 		Plateau.getInstance().getJoueurCourant().finirTour();
 	}
 
