@@ -1,7 +1,12 @@
 package capacite;
 
 import jeu.HearthstoneException;
-
+/**
+* Provocation: Oblige les serviteur adverse a attaqeur le serviteur avec provocation 
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class Provocation extends Capacite {
 
 	public Provocation() {

@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* Charge: Permet a la cible d'attaquer sans attendre la fin de sa stase
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.HearthstoneException;
 import carte.*;
 

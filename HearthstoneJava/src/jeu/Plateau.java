@@ -1,7 +1,12 @@
 package jeu;
 
 import java.util.ArrayList;
-
+/**
+* Plateau: cette classe gere le plateau
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class Plateau implements IPlateau {
 	private static IPlateau inPlateau = null;
 	private ArrayList<IJoueur> joueurs = new ArrayList<IJoueur>();

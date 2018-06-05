@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* Rale d'agonie : inflige deux point de degat au hero adverse a la mort du serviteur
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.*;
 
 public class Lepre extends Attaque {

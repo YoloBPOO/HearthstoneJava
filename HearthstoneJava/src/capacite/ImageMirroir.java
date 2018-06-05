@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* ImageMirroir: Invoque 2 image remanente avec provocation
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import carte.Serviteur;
 import jeu.*;
 

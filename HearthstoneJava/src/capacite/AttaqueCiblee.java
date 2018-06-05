@@ -5,9 +5,9 @@ import carte.*;
 
 /**
  * AttaqueCiblee est une capacité qui permet à un sort ou à un serviteur d'infliger des dégâts à une cible
- * @author BIVER - ROUSSEL
- * @version 0.1.0
- * @see Capacite
+ * @author ROUSSEL - BIVER
+ * @version 0.9.0
+ * @see capacite
  */
 
 public class AttaqueCiblee extends Attaque {

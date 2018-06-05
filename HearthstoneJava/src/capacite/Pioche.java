@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* Pioche : pioche une ou plusieurs carte dans le deck pour les mettrent dans la main  
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.HearthstoneException;
 import carte.ICarte;
 

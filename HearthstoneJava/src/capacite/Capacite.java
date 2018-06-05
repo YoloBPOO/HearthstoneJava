@@ -2,6 +2,13 @@ package capacite;
 
 import jeu.HearthstoneException;
 
+/**
+* Capacite: Gere les capacites de toute les carte
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
+
 public class Capacite implements ICapacite {
 	
 	// Attributs

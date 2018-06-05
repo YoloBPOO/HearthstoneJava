@@ -1,5 +1,10 @@
 package carte;
-
+/**
+* Serviteur: gere les serviteurs 
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.*;
 import capacite.*;
 

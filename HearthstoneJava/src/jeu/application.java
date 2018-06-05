@@ -1,11 +1,14 @@
 package jeu;
 
 import carte.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 import capacite.*;
-
-
+/**
+* Application: cette classe gere le programme et son execution
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class application {
 	private static String pseudoJ1;
 	private static String pseudoJ2;

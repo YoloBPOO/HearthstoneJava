@@ -4,7 +4,12 @@ import carte.ICarte;
 import carte.Serviteur;
 import jeu.HearthstoneException;
 import jeu.Heros;
-
+/**
+* BouleDeFeu : Pouvoir heroique du mage, inflige un point de degat à la cible
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class BouleDeFeu extends Attaque {
 
 	public BouleDeFeu() {

@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* InvocationDeServiteur
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.*;
 import carte.*;
 

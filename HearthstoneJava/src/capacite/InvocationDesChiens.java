@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* InvocationDesChiens: Invoque un chien avec charge pour chaque serviteur adverse sur le plateau
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import carte.*;
 import jeu.*;
 

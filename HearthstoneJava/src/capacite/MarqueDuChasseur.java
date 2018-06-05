@@ -1,12 +1,17 @@
 package capacite;
-
+/**
+* MarqueDuChasseur: les point de vie du serviteur cible passent a 1 
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 import jeu.HearthstoneException;
 import carte.*;
 
 public class MarqueDuChasseur extends Attaque {
 
 		public MarqueDuChasseur() {
-			super("Marque du Chasseur", "Modifie le spoints de vie du serviteur cible a 1", 0);
+			super("Marque du Chasseur", "Modifie les points de vie du serviteur cible a 1", 0);
 		}
 		
 		@Override

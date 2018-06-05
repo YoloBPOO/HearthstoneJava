@@ -3,7 +3,12 @@ package capacite;
 import jeu.HearthstoneException;
 import jeu.Heros;
 import jeu.Plateau;
-
+/**
+* FlecheDuChasseur : Pouvoir heroique du chasseur , inflige 2 points de degats au hero adverse
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class FlecheDuChasseur extends Attaque {
 
 	public FlecheDuChasseur() {

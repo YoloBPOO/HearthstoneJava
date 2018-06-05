@@ -2,7 +2,12 @@ package capacite;
 
 import jeu.*;
 import carte.*;
-
+/**
+* AttaqueTotale : cette  capacité  permet à  la  carte  qui  la  possède  d'attaquer simultanément tous les serviteurs adverses.
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class AttaqueTotale extends Attaque {
 
 	public AttaqueTotale(int d) {

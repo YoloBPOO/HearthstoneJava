@@ -1,5 +1,10 @@
 package capacite;
-
+/**
+* Attaque
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public abstract class Attaque extends Capacite {
 	private int degat;
 	

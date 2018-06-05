@@ -2,7 +2,12 @@ package capacite;
 
 import carte.*;
 import jeu.*;
-
+/**
+* Golemisation: Invoque un goleme endomage a la mort de la carte
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class Golemisation extends InvocationDeServiteurs {
 	
 	public Golemisation(IJoueur joueur) throws HearthstoneException{

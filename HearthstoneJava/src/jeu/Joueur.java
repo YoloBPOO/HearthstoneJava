@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import capacite.*;
 import carte.*;
-
-
+/**
+* Joueur : cette classe gere la creation des deux joueurs
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class Joueur implements IJoueur {
 	
 	// Attributs	

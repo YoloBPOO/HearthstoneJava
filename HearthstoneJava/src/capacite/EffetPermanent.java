@@ -2,7 +2,12 @@ package capacite;
 
 import jeu.HearthstoneException;
 import carte.*;
-
+/**
+* EffetPermanent: Augmente les points d'attaque et/ou de vie tant que la carte est en jeu
+* @author ROUSSEL - BIVER
+* @version 0.9.0
+* @see capacite
+*/
 public class EffetPermanent extends Capacite {
 
 	private int boostPdv, boostAtt;
