@@ -7,7 +7,7 @@ import capacite.*;
 * Application: cette classe gere le programme et son execution
 * @author ROUSSEL - BIVER
 * @version 0.9.0
-* @see capacite
+* @see jeu
 */
 public class application {
 	private static String pseudoJ1;

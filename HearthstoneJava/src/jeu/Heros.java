@@ -5,7 +5,7 @@ import capacite.Capacite;
 *Heros: cette classe gere la creation des deux heros
 * @author ROUSSEL - BIVER
 * @version 0.9.0
-* @see capacite
+* @see jeu
 */
 public class Heros {
 	

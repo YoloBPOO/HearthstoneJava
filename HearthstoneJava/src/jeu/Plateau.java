@@ -5,15 +5,13 @@ import java.util.ArrayList;
 * Plateau: cette classe gere le plateau
 * @author ROUSSEL - BIVER
 * @version 0.9.0
-* @see capacite
+* @see jeu
 */
 public class Plateau implements IPlateau {
 	private static IPlateau inPlateau = null;
 	private ArrayList<IJoueur> joueurs = new ArrayList<IJoueur>();
 	private IJoueur joueurCourant = null;
 	private boolean demarrer = false;
-	
-	// constructeur
 
 	public void ajouterJoueur(IJoueur joueur) throws HearthstoneException {
 		if (joueur==null) 
@@ -21,7 +19,7 @@ public class Plateau implements IPlateau {
 		if (joueurs.size() == 2) 
 			throw new HearthstoneException("Joueur max atteind");
 		if (joueurs.contains(joueur))
-			throw new HearthstoneException("Le joueur fait deja partie du plateau");
+			throw new HearthstoneException("Vous ne pouvez pas choisir le même heros que votre adversaire");
 		joueurs.add(joueur);
 	}
 	

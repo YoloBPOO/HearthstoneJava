@@ -3,7 +3,7 @@ package carte;
 * Sort: gere les sorts
 * @author ROUSSEL - BIVER
 * @version 0.9.0
-* @see capacite
+* @see carte
 */
 import capacite.*;
 import jeu.*;

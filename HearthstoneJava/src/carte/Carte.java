@@ -3,7 +3,7 @@ package carte;
 * Carte : gere les carte dans le jeu, sort comme serviteur
 * @author ROUSSEL - BIVER
 * @version 0.9.0
-* @see capacite
+* @see carte
 */
 import capacite.ICapacite;
 import jeu.IJoueur;
