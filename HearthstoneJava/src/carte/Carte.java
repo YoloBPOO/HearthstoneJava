@@ -64,4 +64,20 @@ public abstract class Carte implements ICarte {
 	public String toString() {
 		return "Nom : " + this.getNom() + " - Cout : " + this.getCout();
 	}
+	
+	public boolean equals(Object o) {
+		if (this==o) 
+			return true;
+		if (o==null)
+			return false;
+		if (!(o instanceof ICarte))
+			return false;
+		
+		Carte other = (Carte) o;
+		
+		if (other.getNom()==this.getNom()) 
+			return true;
+		
+		return false;
+	}
 }

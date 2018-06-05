@@ -26,6 +26,8 @@ public class Serviteur extends Carte {
 		setPdv(serv.getPdv());
 }
 	
+	//setter 
+	
 	public void setPdv(int p) {
 		this.pdv=p;
 	}
@@ -38,6 +40,8 @@ public class Serviteur extends Carte {
 		this.jouable=b;
 	}
 	
+	//getter 
+	
 	public int getPdv() {
 		return this.pdv;
 	}
@@ -49,6 +53,8 @@ public class Serviteur extends Carte {
 	public boolean getJouable() {
 		return this.jouable;
 	}
+	
+	// methode
 	
 	public String toString() {
 		String s = "Serviteur [" + super.toString() + " || PDV : " + this.getPdv() + " || ATT : " + this.getAtt();

@@ -13,9 +13,13 @@ public abstract class Attaque extends Capacite {
 		this.setDegat(degat);
 	}
 	
+	//getter 
+	
 	public int getDegat() {
 		return this.degat;
 	}
+	
+	// setter
 	
 	public void setDegat (int d) {
 		this.degat = d;

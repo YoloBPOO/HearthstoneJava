@@ -18,6 +18,8 @@ public class EffetPermanent extends Capacite {
 		this.setBoostAtt(ba);
 	}
 	
+	// setter
+	
 	public void setBoostPdv(int p) {
 		this.boostPdv=p;
 	}
@@ -25,6 +27,8 @@ public class EffetPermanent extends Capacite {
 	public void setBoostAtt(int a) {
 		this.boostAtt=a;
 	}
+	
+	// getter
 	
 	public int getBoostPdv() {
 		return this.boostPdv;
@@ -34,22 +38,19 @@ public class EffetPermanent extends Capacite {
 		return this.boostAtt;
 	}
 	
-	@Override
+	// methode
+	
 	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
 	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
 	public void executerAction(Object cible) throws HearthstoneException {}
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		((Serviteur)cible).setPdv(((Serviteur)cible).getPdv()+this.getBoostPdv());
 		((Serviteur)cible).setAtt(((Serviteur)cible).getAtt()+this.getBoostAtt());
 	}
 
-	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {
 		((Serviteur)cible).setPdv(((Serviteur)cible).getPdv()-this.getBoostPdv());
 		((Serviteur)cible).setAtt(((Serviteur)cible).getAtt()-this.getBoostAtt());

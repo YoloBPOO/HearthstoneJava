@@ -16,13 +16,10 @@ public class AttaqueCiblee extends Attaque {
 		super("Attaque ciblee", "Inflige "+d+" points de degat à une cible", d);
 	}
 	
-	@Override
 	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
 	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
 		if (cible == null)
 			throw new HearthstoneException ("Aucune cible");
@@ -37,11 +34,9 @@ public class AttaqueCiblee extends Attaque {
 	}
 	
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		this.executerAction(cible);
 	}
 
-	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 }

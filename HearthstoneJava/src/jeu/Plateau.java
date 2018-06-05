@@ -12,6 +12,8 @@ public class Plateau implements IPlateau {
 	private ArrayList<IJoueur> joueurs = new ArrayList<IJoueur>();
 	private IJoueur joueurCourant = null;
 	private boolean demarrer = false;
+	
+	// constructeur
 
 	public void ajouterJoueur(IJoueur joueur) throws HearthstoneException {
 		if (joueur==null) 
@@ -22,15 +24,13 @@ public class Plateau implements IPlateau {
 			throw new HearthstoneException("Le joueur fait deja partie du plateau");
 		joueurs.add(joueur);
 	}
+	
+	//getter
 
 	public IJoueur getJoueurCourant() {
 		return this.joueurCourant;
 	}
-
-	public void setJoueurCourant(IJoueur joueur) throws HearthstoneException {
-		this.joueurCourant=joueur;
-	}
-
+	
 	public IJoueur getAdversaire(IJoueur joueur) throws HearthstoneException {
 		if(joueur==null) 
 			throw new HearthstoneException("Pas de joueur");
@@ -41,6 +41,15 @@ public class Plateau implements IPlateau {
 		else
 			return this.joueurs.get(0);
 	}
+
+	
+	//setter
+
+	public void setJoueurCourant(IJoueur joueur) throws HearthstoneException {
+		this.joueurCourant=joueur;
+	}
+
+	// methode
 
 	public void demarrerPartie() throws HearthstoneException {
 		if(this.joueurs.size()!=2) 

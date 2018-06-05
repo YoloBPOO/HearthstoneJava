@@ -17,33 +17,34 @@ public class Pioche extends Capacite {
 		setNbr(nb);
 	}
 	
+	// setter 
+	
 	public void setNbr(int n) {
 		this.nbr=n;
 	}
+	
+	// getter
 	
 	public int getNbr() {
 		return this.nbr;
 	}
 	
-	@Override
+	// methode
+	
 	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
 	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
 		for(int i = 0; i < this.nbr; i++) {
 			((ICarte) cible).getProprietaire().piocher();
 		}
 	}
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		this.executerAction(cible);
 	}
 
-	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 
 }

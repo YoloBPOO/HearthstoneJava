@@ -59,7 +59,25 @@ public class Heros {
 		return pouvoirJouable;
 	}
 	
+	// methode
+	
 	public String toString() {
 		return "Heros [Nom : " + this.getNom() + " - PDV : " + this.getPdv() + " - Pouvoir Heroique : " + getCapacite() +".]";
+	}
+	
+	public boolean equals(Object o) {
+		if (this==o) 
+			return true;
+		if (o==null)
+			return false;
+		if (!(o instanceof Heros))
+			return false;
+		
+		Heros other = (Heros) o;
+		
+		if (other.getNom()==this.getNom()) 
+			return true;
+		
+		return false;
 	}
 }

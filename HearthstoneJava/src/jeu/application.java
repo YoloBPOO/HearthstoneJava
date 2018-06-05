@@ -54,7 +54,6 @@ public class application {
 		System.out.println("=======================================================");
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu());
 		System.out.println("*******************************************************");
-		System.out.println("\n");
 		System.out.println("*******************************************************");
 		System.out.println(Plateau.getInstance().getJoueurCourant().getJeu());
 		System.out.println("=======================================================");

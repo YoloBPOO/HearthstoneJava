@@ -19,13 +19,7 @@ public class InvocationDeServiteurs extends Capacite {
 		this.setNb(nb);
 	}
 	
-	public void setServ(Serviteur serv) {
-		this.serviteur=serv;
-	}
-	
-	public void setNb(int n) {
-		this.nb=n;
-	}
+	// getter
 	
 	public Serviteur getServ() {
 		return this.serviteur;
@@ -34,14 +28,21 @@ public class InvocationDeServiteurs extends Capacite {
 	public int getNb() {
 		return this.nb;
 	}
+
+	// setter
+
+	public void setServ(Serviteur serv) {
+		this.serviteur=serv;
+	}
 	
-	@Override
+	public void setNb(int n) {
+		this.nb=n;
+	}
+	
 	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
 	public void executerEffetFinTour() throws HearthstoneException {}
 
-	@Override
 	public void executerAction(Object cible) throws HearthstoneException {
 		int nb;
 		IJoueur joue=Plateau.getInstance().getJoueurCourant();
@@ -57,11 +58,9 @@ public class InvocationDeServiteurs extends Capacite {
 		}
 	}
 
-	@Override
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 		this.executerAction(cible);
 	}
 
-	@Override
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 }

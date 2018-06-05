@@ -11,16 +11,13 @@ import carte.*;
 public class MarqueDuChasseur extends Attaque {
 
 		public MarqueDuChasseur() {
-			super("Marque du Chasseur", "Modifie les points de vie du serviteur cible a 1", 0);
+			super("Marque du Chasseur", "Diminue les points de vie du serviteur cible a 1", 0);
 		}
 		
-		@Override
 		public void executerEffetDebutTour() throws HearthstoneException {}
 
-		@Override
 		public void executerEffetFinTour() throws HearthstoneException {}
 
-		@Override
 		public void executerAction(Object cible) throws HearthstoneException {
 			if(cible instanceof Serviteur)
 				((Serviteur) cible).setPdv(1);
@@ -28,12 +25,10 @@ public class MarqueDuChasseur extends Attaque {
 				throw new HearthstoneException("La cible n'est pas un serviteur");
 		}
 	
-		@Override
 		public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
 			this.executerAction(cible);
 		}
 
-		@Override
 		public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 	}
 

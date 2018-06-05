@@ -231,7 +231,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	@Override
 	public void finirTour() throws HearthstoneException {
 		for (ICarte carte : this.getJeu())
 			carte.executerEffetFinTour(Plateau.getInstance().getAdversaire(this));
@@ -242,7 +241,6 @@ public class Joueur implements IJoueur {
 		Collections.shuffle(deck);
 	}
 	
-	@Override
 	public void piocher() throws HearthstoneException {
 		if (!this.getDeck().isEmpty()) {
 			this.main.add(this.deck.get(0));
@@ -250,7 +248,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	@Override
 	public void jouerCarte(ICarte carte) throws HearthstoneException {
 		try {
 			if (carte.getCout() > this.getStockMana())
@@ -287,8 +284,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	
-	@Override
 	public void jouerCarte(ICarte carte, Object cible) throws HearthstoneException {
 		try {
 			if (carte.getCout() > this.getStockMana())
@@ -325,7 +320,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	@Override
 	public void utiliserCarte(ICarte carte, Object cible) throws HearthstoneException {
 		try {
 			if ( !((Serviteur) carte).getJouable()) 
@@ -375,7 +369,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	@Override
 	public void utiliserPouvoir(Object cible) throws HearthstoneException {
 		try {
 			if (this.heros.getPouvoirJouable()) {
@@ -400,7 +393,6 @@ public class Joueur implements IJoueur {
 		}
 	}
 
-	@Override
 	public void perdreCarte(ICarte carte) throws HearthstoneException {
 		this.jeu.remove(carte);
 		carte.executerEffetDisparition(carte);
@@ -413,5 +405,22 @@ public class Joueur implements IJoueur {
         }
 		return false;
 	}
-
+	
+	public boolean equals(Object o) {
+		if (this==o) 
+			return true;
+		if (o==null)
+			return false;
+		if (!(o instanceof IJoueur))
+			return false;
+		
+		Joueur other = (Joueur) o;
+		
+		if (other.getHeros()==this.getHeros()) 
+			return true;
+		if (other.getPseudo()==this.getPseudo())
+			return true;
+		
+		return false;
+	}
 }

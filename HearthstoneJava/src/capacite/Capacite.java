@@ -50,34 +50,30 @@ public class Capacite implements ICapacite {
 		return " - Capacité [" + this.getNom() + " --> " + this.getDescription() + " ]";
 	}
 	
-	@Override
-	public void executerEffetDebutTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
-
+	public boolean equals(Object o) {
+		if (this==o) 
+			return true;
+		if (o==null)
+			return false;
+		if (!(o instanceof ICapacite))
+			return false;
+		
+		Capacite other = (Capacite) o;
+		
+		if (other.getNom()==this.getNom()) 
+			return true;
+		
+		return false;
 	}
+	
+	public void executerEffetDebutTour() throws HearthstoneException {}
 
-	@Override
-	public void executerEffetFinTour() throws HearthstoneException {
-		// TODO Auto-generated method stub
+	public void executerEffetFinTour() throws HearthstoneException {}
 
-	}
+	public void executerAction(Object cible) throws HearthstoneException {}
 
-	@Override
-	public void executerAction(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
+	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {}
 
-	}
-
-	@Override
-	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void executerEffetDisparition(Object cible) throws HearthstoneException {
-		// TODO Auto-generated method stub
-
-	}
+	public void executerEffetDisparition(Object cible) throws HearthstoneException {}
 
 }
