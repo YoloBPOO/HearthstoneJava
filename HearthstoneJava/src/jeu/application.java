@@ -162,7 +162,6 @@ public class application {
 	}
 
 	public static void main(String[] args) throws HearthstoneException {
-		
 		BouleDeFeu bdf = new BouleDeFeu();
 		Heros jaina = new Heros("Jaina", 15, bdf);
 		
@@ -188,9 +187,7 @@ public class application {
 			joueur1.piocher();
 			joueur1.piocher();
 			joueur1.piocher();
-		}
-			
-		
+		}		
 			
 		System.out.println("Entrez le pseudo du joueur 2 : ");
 		pseudoJ2 = sc.nextLine();
@@ -212,9 +209,10 @@ public class application {
 			joueur2.piocher();
 			joueur2.piocher();
 		}		
-				
+
 		Plateau.getInstance().ajouterJoueur(joueur1);
 		Plateau.getInstance().ajouterJoueur(joueur2);
+	
 		System.out.println("Le combat oppose " + pseudoJ1 + " qui incarne " + joueur1.getHeros().getNom() + " contre " + pseudoJ2 + " qui incarne " + joueur2.getHeros().getNom());
 
 		Plateau.getInstance().demarrerPartie();
