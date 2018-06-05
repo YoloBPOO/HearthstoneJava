@@ -50,13 +50,15 @@ public class application {
 		System.out.println("_______________________________________________________");
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getPseudo()+"  [Point de vie: " +Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getStockMana()+"/"+Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getMana()+ "]");
 		System.out.println("\n");
-		System.out.println("_______________________________________________________");
+		System.out.println("-------------------------------------------------------");
 		System.out.println("=======================================================");
 		System.out.println(Plateau.getInstance().getAdversaire(Plateau.getInstance().getJoueurCourant()).getJeu());
-		System.out.println("----------------------------------------------------------");
+		System.out.println("*******************************************************");
+		System.out.println("\n");
+		System.out.println("*******************************************************");
 		System.out.println(Plateau.getInstance().getJoueurCourant().getJeu());
 		System.out.println("=======================================================");
-		System.out.println("_______________________________________________________");
+		System.out.println("-------------------------------------------------------");
 		System.out.println("\n");
 		System.out.println(Plateau.getInstance().getJoueurCourant().getPseudo() +"  [Point de vie: " +Plateau.getInstance().getJoueurCourant().getHeros().getPdv() + " || Mana: " + Plateau.getInstance().getJoueurCourant().getStockMana()+"/"+Plateau.getInstance().getJoueurCourant().getMana()+ "]");
 		System.out.println("\n");
@@ -89,7 +91,8 @@ public class application {
 					else {
 						Heros cible=Plateau.getInstance().getAdversaire(c.getProprietaire()).getHeros();
 						Plateau.getInstance().getJoueurCourant().jouerCarte(c,cible);
-						if (cible.getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
+						if (cible.getPdv()<=0) 
+							Plateau.getInstance().gagnePartie(c.getProprietaire());
 					}
 				}
 				else 
@@ -97,7 +100,8 @@ public class application {
 				if (c.getCapacite() instanceof AttaqueDuHeros) {
 					Plateau.getInstance().getJoueurCourant().jouerCarte(c);
 					IJoueur adversaire = Plateau.getInstance().getAdversaire(c.getProprietaire());
-					if (adversaire.getHeros().getPdv()<=0) Plateau.getInstance().gagnePartie(c.getProprietaire());
+					if (adversaire.getHeros().getPdv()<=0) 
+						Plateau.getInstance().gagnePartie(c.getProprietaire());
 				}
 			}
 			else 
