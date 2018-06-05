@@ -47,12 +47,16 @@ public class EffetPermanent extends Capacite {
 	public void executerAction(Object cible) throws HearthstoneException {}
 
 	public void executerEffetMiseEnJeu(Object cible) throws HearthstoneException {
-		((Serviteur)cible).setPdv(((Serviteur)cible).getPdv()+this.getBoostPdv());
-		((Serviteur)cible).setAtt(((Serviteur)cible).getAtt()+this.getBoostAtt());
+		for(ICarte carte : ((ICarte)cible).getProprietaire().getJeu()) {
+			((Serviteur) carte).setAtt(((Serviteur) carte).getAtt() + boostAtt);
+			((Serviteur) carte).setPdv(((Serviteur) carte).getPdv() + boostPdv);
+		}
 	}
 
 	public void executerEffetDisparition(Object cible) throws HearthstoneException {
-		((Serviteur)cible).setPdv(((Serviteur)cible).getPdv()-this.getBoostPdv());
-		((Serviteur)cible).setAtt(((Serviteur)cible).getAtt()-this.getBoostAtt());
+		for(ICarte carte : ((ICarte)cible).getProprietaire().getJeu()) {
+			((Serviteur) carte).setAtt(((Serviteur) carte).getAtt() - boostAtt);
+			((Serviteur) carte).setPdv(((Serviteur) carte).getPdv() - boostPdv);
+		}	
 	}
 }
